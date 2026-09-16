@@ -1,16 +1,10 @@
-/** Edit before launch */
 window.GAIN_STORE = {
   brand: "Gain",
-  tagline: "Rivals Skin Changer",
-  discordUrl: "https://discord.gg/YOUR_INVITE",
+  product: "Rivals Skin Changer",
+  discordUrl: "https://discord.gg/PBMHrgJ4Kd",
   loaderUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
-  price: {
-    amount: "5",
-    currency: "$",
-    label: "Lifetime",
-    note: "One-time · HWID locked · All updates included",
-  },
+  price: { amount: "5.00", currency: "$" },
   executors: [
     "Madium",
     "Potassium",
@@ -26,4 +20,47 @@ window.GAIN_STORE = {
     "MacSploit",
     "Opiumware",
   ],
+  features: {
+    Cosmetics: [
+      "Weapon skins",
+      "Wraps",
+      "Charms",
+      "Live preview",
+      "Search & grid picker",
+      "Auto-save loadout",
+    ],
+    Visuals: [
+      "Skybox + rotation",
+      "Fog, clock, brightness",
+      "Bloom, blur, DOF, sun rays",
+      "Atmosphere haze / glare",
+      "4K reflections",
+      "Combat FX cleanup",
+    ],
+    Chams: [
+      "Weapon chams",
+      "Arm chams",
+      "Invisible arms",
+      "Highlights & outlines",
+      "14 materials (Neon, Chrome, Prism…)",
+    ],
+    Camera: [
+      "Third person + bind",
+      "FOV changer",
+      "Stretched resolution",
+    ],
+    Spoof: [
+      "Level / streak / rank",
+      "ELO",
+      "Name & username",
+      "Device type",
+      "Custom status",
+    ],
+    Other: [
+      "Config profiles + autoload",
+      "Accent color & menu key",
+      "HWID-locked license",
+      "Undetected status",
+    ],
+  },
 };

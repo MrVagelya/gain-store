@@ -5,7 +5,7 @@ Free hosting: **GitHub Pages**.
 ## Edit before launch
 
 1. Open `site-config.js`
-2. Set `discordUrl` to your real Discord invite
+2. Discord invite is already set in `site-config.js`
 3. Adjust `plans` prices if needed
 
 ## Deploy to GitHub Pages
