@@ -394,6 +394,73 @@ h1 {
   background: #355a90;
 }
 
+.cta-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  margin-top: 0.55rem;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  font-weight: 500;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.cta-secondary:hover {
+  border-color: #3a3a42;
+  color: var(--text);
+}
+
+.success-page {
+  min-height: 100vh;
+}
+
+.success-wrap {
+  position: relative;
+  z-index: 3;
+  max-width: 520px;
+  margin: 4rem auto;
+  padding: 2rem 1.25rem;
+}
+
+.success-wrap h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+}
+
+.success-status {
+  color: var(--dim);
+  margin: 0 0 1.25rem;
+}
+
+.success-key {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.success-key code {
+  display: block;
+  word-break: break-all;
+  font-family: ui-monospace, monospace;
+  font-size: 0.82rem;
+  margin: 0.4rem 0 0.75rem;
+}
+
+.success-help {
+  color: var(--dim);
+  font-size: 0.85rem;
+}
+
+.success-wrap .cta-secondary {
+  margin-top: 1.25rem;
+  max-width: 200px;
+}
+
 .hint {
   margin: 0.7rem 0 0;
   color: var(--dim);

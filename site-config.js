@@ -2,6 +2,9 @@ window.GAIN_STORE = {
   brand: "Gain",
   product: "Rivals Skin Changer",
   discordUrl: "https://discord.gg/PBMHrgJ4Kd",
+  stripePaymentUrl: "https://buy.stripe.com/dRm6oGeOv8lW76k106dQQ00",
+  stripeFulfillUrl:
+    "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/fulfill",
   loaderUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
   price: { amount: "5.00", currency: "$" },

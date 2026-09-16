@@ -1,9 +1,21 @@
 (function () {
   const cfg = window.GAIN_STORE || {};
   const discord = cfg.discordUrl || "#";
+  const stripe = cfg.stripePaymentUrl || "";
 
   document.querySelectorAll("[data-discord]").forEach((el) => {
     el.href = discord;
+  });
+
+  document.querySelectorAll("[data-stripe]").forEach((el) => {
+    if (stripe) {
+      el.href = stripe;
+      el.removeAttribute("aria-disabled");
+    } else {
+      el.href = "#";
+      el.setAttribute("aria-disabled", "true");
+      el.addEventListener("click", (e) => e.preventDefault());
+    }
   });
 
   const feat = document.getElementById("feat-grid");
