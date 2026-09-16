@@ -131,10 +131,7 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
       canvas.height = innerHeight;
     };
 
-    const spawnX = () => {
-      const band = Math.max(140, innerWidth * 0.22);
-      return Math.random() < 0.5 ? Math.random() * band : innerWidth - Math.random() * band;
-    };
+    const spawnX = () => Math.random() * innerWidth;
 
     const makeFlake = (anywhereY) => ({
       x: spawnX(),
