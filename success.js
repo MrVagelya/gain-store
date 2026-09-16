@@ -10,6 +10,7 @@
   const keyEl = document.getElementById("license-key");
   const snippetEl = document.getElementById("loader-snippet");
   const fulfillUrl = cfg.stripeFulfillUrl || "";
+  const emailNotice = document.getElementById("email-notice");
 
   if (!sessionId || !fulfillUrl) {
     if (status) status.textContent = "Missing checkout session. Contact support on Discord.";
@@ -25,10 +26,27 @@
       const res = await fetch(`${fulfillUrl}?session_id=${encodeURIComponent(sessionId)}`);
       const data = await res.json().catch(() => ({}));
       if (data.success && data.key) {
-        if (status) status.textContent = "Your license is ready.";
-        if (keyEl) keyEl.textContent = data.key;
-        if (snippetEl) snippetEl.textContent = data.loaderSnippet || "";
-        if (keyBox) keyBox.hidden = false;
+        const showReady = (payload) => {
+          if (status) status.textContent = "Your license is ready.";
+          if (emailNotice && payload.email) {
+            if (payload.emailSent) {
+              emailNotice.textContent =
+                "We emailed your license key and loader script to " + payload.email + ".";
+            } else {
+              emailNotice.textContent =
+                "Sending your license to " + payload.email + "… You can still copy it below.";
+            }
+            emailNotice.hidden = false;
+          }
+          if (keyEl) keyEl.textContent = payload.key;
+          if (snippetEl) snippetEl.textContent = payload.loaderSnippet || "";
+          if (keyBox) keyBox.hidden = false;
+        };
+        showReady(data);
+        if (!data.emailSent && data.email && tries < maxTries) {
+          setTimeout(poll, 2000);
+          return;
+        }
         return;
       }
       if (tries < maxTries) {

@@ -448,6 +448,17 @@ h1 {
   margin: 0 0 1.25rem;
 }
 
+.success-email {
+  margin: -0.5rem 0 1rem;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.84rem;
+  color: var(--text);
+  background: rgba(45, 79, 130, 0.18);
+  border: 1px solid rgba(45, 79, 130, 0.35);
+  border-radius: 8px;
+  line-height: 1.45;
+}
+
 .success-key {
   background: var(--panel);
   border: 1px solid var(--line);
