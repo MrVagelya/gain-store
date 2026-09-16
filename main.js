@@ -88,36 +88,6 @@ loadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
   });
   setPlan(cfg.defaultPlan || "skins");
 
-  const keyForm = document.getElementById("key-download");
-  if (keyForm) {
-    keyForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const input = document.getElementById("download-key");
-      const msg = document.getElementById("download-msg");
-      const key = (input && input.value ? input.value : "").trim();
-      if (msg) {
-        msg.hidden = false;
-        msg.textContent = "Checking key…";
-      }
-      if (!key || !cfg.stripeDownloadUrl) {
-        if (msg) msg.textContent = "Enter your External key.";
-        return;
-      }
-      try {
-        const res = await fetch(`${cfg.stripeDownloadUrl}?key=${encodeURIComponent(key)}`);
-        const data = await res.json().catch(() => ({}));
-        if (data.success && data.url) {
-          if (msg) msg.textContent = "Starting download…";
-          location.href = data.url;
-        } else if (msg) {
-          msg.textContent = "Key not valid for External download.";
-        }
-      } catch {
-        if (msg) msg.textContent = "Download failed. Try Discord.";
-      }
-    });
-  }
-
   if (copy) {
     copy.addEventListener("click", async () => {
       try {
@@ -127,15 +97,6 @@ loadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
       } catch (_) {}
     });
   }
-
-  const thumbs = [...document.querySelectorAll(".thumb")];
-  const externalMain = document.getElementById("external-main");
-  thumbs.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      thumbs.forEach((t) => t.classList.toggle("is-on", t === btn));
-      if (externalMain && btn.dataset.src) externalMain.src = btn.dataset.src;
-    });
-  });
 
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
