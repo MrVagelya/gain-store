@@ -57,24 +57,19 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
   const salesLine = document.getElementById("sales-line");
   const salesNum = document.getElementById("sales-num");
   const showSales = (n) => {
-    if (!salesLine || !salesNum || !Number.isFinite(n) || n < 0) return;
+    if (!salesLine || !salesNum || !Number.isFinite(n) || n < 1) return;
     salesNum.textContent = n.toLocaleString("en-US");
     salesLine.hidden = false;
   };
-  const fallbackSales = Number(cfg.salesOffset) || 0;
   if (cfg.salesStatsUrl) {
     fetch(cfg.salesStatsUrl)
       .then((r) => r.json())
       .then((data) => {
         if (data && data.success && typeof data.sales === "number") {
           showSales(data.sales);
-        } else if (fallbackSales > 0) showSales(fallbackSales);
+        }
       })
-      .catch(() => {
-        if (fallbackSales > 0) showSales(fallbackSales);
-      });
-  } else if (fallbackSales > 0) {
-    showSales(fallbackSales);
+      .catch(() => {});
   }
 
   const tabs = [...document.querySelectorAll(".tab")];
