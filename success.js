@@ -80,6 +80,28 @@
             : [{ name: "License", key: data.key, snippet: data.loaderSnippet || "" }];
         renderItems(items);
         if (keyBox) keyBox.hidden = false;
+        const downloadBtn = document.getElementById("download-btn");
+        if (downloadBtn && data.download && cfg.stripeDownloadUrl) {
+          downloadBtn.hidden = false;
+          downloadBtn.onclick = async (e) => {
+            e.preventDefault();
+            downloadBtn.textContent = "Preparing file…";
+            try {
+              const dres = await fetch(
+                `${cfg.stripeDownloadUrl}?session_id=${encodeURIComponent(sessionId)}`
+              );
+              const ddata = await dres.json().catch(() => ({}));
+              if (ddata.success && ddata.url) {
+                location.href = ddata.url;
+                downloadBtn.textContent = "Download Gain External";
+              } else {
+                downloadBtn.textContent = "Download unavailable";
+              }
+            } catch {
+              downloadBtn.textContent = "Download failed";
+            }
+          };
+        }
         if (!data.emailSent && data.email && tries < maxTries) {
           setTimeout(poll, 2000);
           return;

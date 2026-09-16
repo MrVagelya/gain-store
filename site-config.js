@@ -3,6 +3,8 @@ window.GAIN_STORE = {
   discordUrl: "https://discord.gg/PBMHrgJ4Kd",
   stripeFulfillUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/fulfill",
+  stripeDownloadUrl:
+    "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/download",
   salesStatsUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/stats/sales",
   defaultPlan: "external",
