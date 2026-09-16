@@ -54,6 +54,29 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  const salesLine = document.getElementById("sales-line");
+  const salesNum = document.getElementById("sales-num");
+  const showSales = (n) => {
+    if (!salesLine || !salesNum || !Number.isFinite(n) || n < 0) return;
+    salesNum.textContent = n.toLocaleString("en-US");
+    salesLine.hidden = false;
+  };
+  const fallbackSales = Number(cfg.salesOffset) || 0;
+  if (cfg.salesStatsUrl) {
+    fetch(cfg.salesStatsUrl)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && data.success && typeof data.sales === "number") {
+          showSales(data.sales);
+        } else if (fallbackSales > 0) showSales(fallbackSales);
+      })
+      .catch(() => {
+        if (fallbackSales > 0) showSales(fallbackSales);
+      });
+  } else if (fallbackSales > 0) {
+    showSales(fallbackSales);
+  }
+
   const tabs = [...document.querySelectorAll(".tab")];
   const ink = document.getElementById("tab-ink");
   const moveInk = (btn) => {

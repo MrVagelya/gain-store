@@ -325,6 +325,19 @@ h1 {
   gap: 0.45rem;
 }
 
+.sales {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--dim);
+  letter-spacing: 0.01em;
+}
+
+.sales-num {
+  color: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
 .pulse {
   width: 7px;
   height: 7px;

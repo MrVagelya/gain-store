@@ -5,6 +5,9 @@ window.GAIN_STORE = {
   stripePaymentUrl: "https://buy.stripe.com/dRm6oGeOv8lW76k106dQQ00",
   stripeFulfillUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/fulfill",
+  salesStatsUrl:
+    "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/stats/sales",
+  salesOffset: 0,
   loaderUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
   price: { amount: "5.00", currency: "$" },
