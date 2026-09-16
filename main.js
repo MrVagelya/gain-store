@@ -101,4 +101,92 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
     window.addEventListener("touchend", end);
     setSplit(compare.getBoundingClientRect().left + compare.clientWidth * 0.5);
   }
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  if (finePointer && !reduced) {
+    const glow = document.getElementById("cursor-glow");
+    const ring = document.getElementById("cursor-ring");
+    let gx = innerWidth / 2;
+    let gy = innerHeight / 2;
+    let tx = gx;
+    let ty = gy;
+    document.body.classList.add("has-cursor");
+    window.addEventListener("mousemove", (e) => {
+      tx = e.clientX;
+      ty = e.clientY;
+      if (ring) {
+        ring.style.transform = "translate(" + tx + "px," + ty + "px)";
+      }
+    });
+    const follow = () => {
+      gx += (tx - gx) * 0.12;
+      gy += (ty - gy) * 0.12;
+      if (glow) glow.style.transform = "translate(" + gx + "px," + gy + "px)";
+      requestAnimationFrame(follow);
+    };
+    follow();
+  }
+
+  if (!reduced) {
+    const canvas = document.getElementById("snow");
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      const flakes = [];
+      const sideBand = () => Math.max(90, innerWidth * 0.18);
+
+      const resize = () => {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+      };
+
+      const spawnX = () => {
+        const band = sideBand();
+        return Math.random() < 0.5
+          ? Math.random() * band
+          : innerWidth - Math.random() * band;
+      };
+
+      const makeFlake = (yRandom) => ({
+        x: spawnX(),
+        y: yRandom ? Math.random() * innerHeight : -10,
+        r: 0.7 + Math.random() * 2.2,
+        s: 0.4 + Math.random() * 1.4,
+        drift: -0.4 + Math.random() * 0.8,
+        a: 0.25 + Math.random() * 0.55,
+      });
+
+      const fill = () => {
+        const count = innerWidth < 700 ? 70 : 140;
+        flakes.length = 0;
+        for (let i = 0; i < count; i++) flakes.push(makeFlake(true));
+      };
+
+      const tick = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < flakes.length; i++) {
+          const f = flakes[i];
+          f.y += f.s;
+          f.x += f.drift + Math.sin((f.y + i) * 0.01) * 0.25;
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(230,240,255," + f.a + ")";
+          ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+          ctx.fill();
+          if (f.y > innerHeight + 8) {
+            flakes[i] = makeFlake(false);
+          }
+        }
+        requestAnimationFrame(tick);
+      };
+
+      resize();
+      fill();
+      window.addEventListener("resize", () => {
+        resize();
+        fill();
+      });
+      tick();
+    }
+  }
 })();
