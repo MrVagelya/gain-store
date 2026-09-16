@@ -103,7 +103,6 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
   }
 
   const glow = document.getElementById("cursor-glow");
-  const ring = document.getElementById("cursor-ring");
   let gx = innerWidth / 2;
   let gy = innerHeight / 2;
   let tx = gx;
@@ -111,11 +110,10 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
   window.addEventListener("mousemove", (e) => {
     tx = e.clientX;
     ty = e.clientY;
-    if (ring) ring.style.transform = "translate(" + tx + "px," + ty + "px)";
   });
   const follow = () => {
-    gx += (tx - gx) * 0.16;
-    gy += (ty - gy) * 0.16;
+    gx += (tx - gx) * 0.08;
+    gy += (ty - gy) * 0.08;
     if (glow) glow.style.transform = "translate(" + gx + "px," + gy + "px)";
     requestAnimationFrame(follow);
   };
@@ -131,19 +129,22 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
       canvas.height = innerHeight;
     };
 
-    const spawnX = () => Math.random() * innerWidth;
+    const spawnX = () => {
+      const band = Math.min(160, innerWidth * 0.12);
+      return Math.random() < 0.5 ? Math.random() * band : innerWidth - Math.random() * band;
+    };
 
     const makeFlake = (anywhereY) => ({
       x: spawnX(),
-      y: anywhereY ? Math.random() * innerHeight : -12,
-      r: 1.4 + Math.random() * 3.2,
-      s: 0.7 + Math.random() * 1.8,
-      drift: -0.5 + Math.random() * 1,
-      a: 0.55 + Math.random() * 0.45,
+      y: anywhereY ? Math.random() * innerHeight : -10,
+      r: 0.8 + Math.random() * 1.6,
+      s: 0.12 + Math.random() * 0.28,
+      drift: -0.12 + Math.random() * 0.24,
+      a: 0.28 + Math.random() * 0.35,
     });
 
     const fill = () => {
-      const count = innerWidth < 700 ? 90 : 180;
+      const count = innerWidth < 700 ? 40 : 70;
       flakes.length = 0;
       for (let i = 0; i < count; i++) flakes.push(makeFlake(true));
     };
@@ -153,11 +154,9 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
       for (let i = 0; i < flakes.length; i++) {
         const f = flakes[i];
         f.y += f.s;
-        f.x += f.drift + Math.sin((f.y + i) * 0.012) * 0.4;
+        f.x += f.drift + Math.sin((f.y + i) * 0.008) * 0.12;
         ctx.beginPath();
-        ctx.fillStyle = "rgba(255,255,255," + f.a + ")";
-        ctx.shadowColor = "rgba(180,210,255,0.8)";
-        ctx.shadowBlur = 8;
+        ctx.fillStyle = "rgba(230,235,245," + f.a + ")";
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
         ctx.fill();
         if (f.y > innerHeight + 10) flakes[i] = makeFlake(false);
