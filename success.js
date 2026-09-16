@@ -7,8 +7,7 @@
   const sessionId = params.get("session_id") || "";
   const status = document.getElementById("status");
   const keyBox = document.getElementById("key-box");
-  const keyEl = document.getElementById("license-key");
-  const snippetEl = document.getElementById("loader-snippet");
+  const itemsEl = document.getElementById("license-items");
   const fulfillUrl = cfg.stripeFulfillUrl || "";
   const emailNotice = document.getElementById("email-notice");
 
@@ -20,29 +19,67 @@
   let tries = 0;
   const maxTries = 40;
 
+  let lastItems = [];
+
+  const renderItems = (items) => {
+    lastItems = items;
+    if (!itemsEl) return;
+    itemsEl.innerHTML = items
+      .map((item, i) => {
+        const name = String(item.name || "License");
+        const key = String(item.key || "");
+        const snippet = String(item.snippet || "");
+        return `
+        <div class="license-block">
+          <p class="kicker">${name}</p>
+          <code>${key}</code>
+          <button type="button" class="copy-btn" data-kind="key" data-i="${i}">Copy key</button>
+          <div class="code">
+            <button type="button" class="copy-btn" data-kind="snippet" data-i="${i}">Copy loader</button>
+            <pre><code></code></pre>
+          </div>
+        </div>`;
+      })
+      .join("");
+    itemsEl.querySelectorAll(".license-block").forEach((block, i) => {
+      const code = block.querySelector("pre code");
+      if (code) code.textContent = items[i].snippet || "";
+    });
+    itemsEl.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const i = Number(btn.getAttribute("data-i") || 0);
+        const kind = btn.getAttribute("data-kind");
+        const item = lastItems[i] || {};
+        const value = kind === "snippet" ? item.snippet : item.key;
+        try {
+          await navigator.clipboard.writeText(value || "");
+          const prev = btn.textContent;
+          btn.textContent = "Copied";
+          setTimeout(() => (btn.textContent = prev), 1600);
+        } catch (_) {}
+      });
+    });
+  };
+
   const poll = async () => {
     tries += 1;
     try {
       const res = await fetch(`${fulfillUrl}?session_id=${encodeURIComponent(sessionId)}`);
       const data = await res.json().catch(() => ({}));
-      if (data.success && data.key) {
-        const showReady = (payload) => {
-          if (status) status.textContent = "Your license is ready.";
-          if (emailNotice && payload.email) {
-            if (payload.emailSent) {
-              emailNotice.textContent =
-                "We emailed your license key and loader script to " + payload.email + ".";
-            } else {
-              emailNotice.textContent =
-                "Sending your license to " + payload.email + "… You can still copy it below.";
-            }
-            emailNotice.hidden = false;
-          }
-          if (keyEl) keyEl.textContent = payload.key;
-          if (snippetEl) snippetEl.textContent = payload.loaderSnippet || "";
-          if (keyBox) keyBox.hidden = false;
-        };
-        showReady(data);
+      if (data.success && (data.key || (data.items && data.items.length))) {
+        if (status) status.textContent = "Your license is ready.";
+        if (emailNotice && data.email) {
+          emailNotice.textContent = data.emailSent
+            ? "We emailed your license key and loader script to " + data.email + "."
+            : "Sending your license to " + data.email + "… You can still copy it below.";
+          emailNotice.hidden = false;
+        }
+        const items =
+          data.items && data.items.length
+            ? data.items
+            : [{ name: "License", key: data.key, snippet: data.loaderSnippet || "" }];
+        renderItems(items);
+        if (keyBox) keyBox.hidden = false;
         if (!data.emailSent && data.email && tries < maxTries) {
           setTimeout(poll, 2000);
           return;
@@ -63,26 +100,4 @@
   };
 
   poll();
-
-  const copyKey = document.getElementById("copy-key");
-  if (copyKey && keyEl) {
-    copyKey.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(keyEl.textContent || "");
-        copyKey.textContent = "Copied";
-        setTimeout(() => (copyKey.textContent = "Copy key"), 1600);
-      } catch (_) {}
-    });
-  }
-
-  const copySnippet = document.getElementById("copy-snippet");
-  if (copySnippet && snippetEl) {
-    copySnippet.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(snippetEl.textContent || "");
-        copySnippet.textContent = "Copied";
-        setTimeout(() => (copySnippet.textContent = "Copy loader"), 1600);
-      } catch (_) {}
-    });
-  }
 })();

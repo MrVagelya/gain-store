@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Gain — Rivals skin changer. $5 lifetime." />
-    <title>Gain — Rivals Skin Changer</title>
-    <link rel="stylesheet" href="styles.css?v=10" />
+    <meta name="description" content="Gain — Rivals Skin Changer and External. Lifetime licenses from $3.50." />
+    <title>Gain — Skin Changer &amp; External</title>
+    <link rel="stylesheet" href="styles.css?v=12" />
   </head>
   <body>
     <div class="fx-grid" aria-hidden="true"></div>
@@ -18,47 +18,91 @@
       <div class="bar">
         <a class="brand" href="#">Gain</a>
         <nav>
-          <a href="#shop">Product</a>
+          <a href="#shop">Products</a>
           <a href="#info">Details</a>
-          <a class="buy" data-stripe href="#">Buy</a>
+          <a class="buy" href="#shop">Buy</a>
         </nav>
       </div>
     </header>
 
     <main class="page">
-      <section class="product" id="shop">
-        <div class="compare" id="compare">
-          <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
-          <img class="compare-img compare-top" id="compare-top" src="images/before.jpg" alt="Before" draggable="false" />
-          <div class="compare-ui" id="compare-ui">
-            <div class="compare-line"></div>
-            <div class="compare-knob"></div>
-          </div>
-          <span class="compare-tag left">Before</span>
-          <span class="compare-tag right">After</span>
+      <section class="catalog" id="shop">
+        <div class="plans" role="tablist" aria-label="Products">
+          <button class="plan" type="button" data-plan="skins">
+            <span class="plan-kicker">Internal</span>
+            <strong>Skin Changer</strong>
+            <span class="plan-copy">Cosmetics, visuals, spoof</span>
+            <span class="plan-price">$5.00</span>
+          </button>
+          <button class="plan is-on" type="button" data-plan="external">
+            <span class="badge">Sale</span>
+            <span class="plan-kicker">External</span>
+            <strong>Gain External</strong>
+            <span class="plan-copy">ESP, motion, overlay</span>
+            <span class="plan-price"><s>$5.00</s> $3.50</span>
+          </button>
+          <button class="plan plan-best" type="button" data-plan="bundle">
+            <span class="badge badge-best">Best value</span>
+            <span class="plan-kicker">Bundle</span>
+            <strong>Skin + External</strong>
+            <span class="plan-copy">Both licenses, one checkout</span>
+            <span class="plan-price"><s>$8.50</s> $7.50</span>
+          </button>
         </div>
 
-        <aside class="buybox">
-          <p class="kicker">License</p>
-          <h1>Rivals Skin Changer</h1>
-          <p class="status"><span class="pulse"></span> Undetected</p>
-          <p class="sales" id="sales-line" hidden>
-            <span class="sales-num" id="sales-num">0</span> completed sales
-          </p>
-          <p class="price">$5.00</p>
-          <p class="sub">Lifetime access · one device</p>
+        <div class="product">
+          <div class="media">
+            <div class="compare media-pane" id="pane-skins" hidden>
+              <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
+              <img class="compare-img compare-top" id="compare-top" src="images/before.jpg" alt="Before" draggable="false" />
+              <div class="compare-ui" id="compare-ui">
+                <div class="compare-line"></div>
+                <div class="compare-knob"></div>
+              </div>
+              <span class="compare-tag left">Before</span>
+              <span class="compare-tag right">After</span>
+            </div>
 
-          <label class="field">
-            Plan
-            <select disabled>
-              <option>Lifetime — $5.00</option>
-            </select>
-          </label>
+            <div class="shot media-pane is-on" id="pane-external">
+              <img id="external-main" src="images/external.png" alt="Gain External ESP overlay" />
+              <div class="thumbs">
+                <button class="thumb is-on" type="button" data-src="images/external.png">ESP</button>
+                <button class="thumb" type="button" data-src="images/external-motion.png">Motion</button>
+              </div>
+            </div>
 
-          <a class="cta" data-stripe href="#">Pay with card — $5.00</a>
-          <a class="cta-secondary" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord</a>
-          <p class="hint">Instant license key after card payment. Discord is also available.</p>
-        </aside>
+            <div class="bundle-shot media-pane" id="pane-bundle" hidden>
+              <figure>
+                <img src="images/after.jpg" alt="Skin Changer" />
+                <figcaption>Skin Changer</figcaption>
+              </figure>
+              <figure>
+                <img src="images/external.png" alt="Gain External" />
+                <figcaption>External</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <aside class="buybox">
+            <p class="kicker" id="buy-kicker">External</p>
+            <h1 id="buy-title">Gain External</h1>
+            <p class="status"><span class="pulse"></span> Undetected</p>
+            <p class="sales" id="sales-line" hidden>
+              <span class="sales-num" id="sales-num">0</span> completed sales
+            </p>
+            <p class="lede" id="buy-blurb">Standalone overlay: ESP, motion, combat, and world tools.</p>
+            <div class="price-row">
+              <p class="price" id="buy-price">$3.50</p>
+              <p class="price-was" id="buy-was">$5.00</p>
+              <span class="save" id="buy-save">30% off</span>
+            </div>
+            <p class="sub" id="buy-sub">Lifetime access · one device</p>
+            <ul class="includes" id="buy-includes"></ul>
+            <a class="cta" id="buy-cta" href="#">Pay with card — $3.50</a>
+            <a class="cta-secondary" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord</a>
+            <p class="hint">Instant keys after card payment. Discord is also available.</p>
+          </aside>
+        </div>
       </section>
 
       <section class="tabs" id="info">
@@ -74,18 +118,17 @@
             <div class="feat-grid" id="feat-grid"></div>
           </div>
           <div class="panel" id="panel-executors" role="tabpanel">
+            <p class="exec-note" id="exec-intro">
+              Skin Changer is supported on these executors. External is a standalone overlay.
+            </p>
             <div class="exec" id="exec-list"></div>
             <p class="exec-note">
-              These executors are supported. If yours is not listed and you need confirmation,
+              If yours is not listed and you need confirmation,
               <a data-discord href="https://discord.gg/PBMHrgJ4Kd">join the Discord</a>.
             </p>
           </div>
           <div class="panel" id="panel-setup" role="tabpanel">
-            <ol class="howto">
-              <li>Pay with card on this site or purchase on Discord to receive your key.</li>
-              <li>Join Rivals and open your executor.</li>
-              <li>Run the loader with your key.</li>
-            </ol>
+            <ol class="howto" id="howto"></ol>
             <div class="code">
               <button type="button" id="copy-snippet">Copy</button>
               <pre><code id="loader-snippet"></code></pre>
@@ -100,7 +143,7 @@
       <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord</a>
     </footer>
 
-    <script src="site-config.js?v=10"></script>
-    <script src="main.js?v=10"></script>
+    <script src="site-config.js?v=12"></script>
+    <script src="main.js?v=12"></script>
   </body>
 </html>

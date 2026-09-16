@@ -1,55 +1,111 @@
 (function () {
   const cfg = window.GAIN_STORE || {};
   const discord = cfg.discordUrl || "#";
-  const stripe = cfg.stripePaymentUrl || "";
+  const plans = cfg.plans || {};
 
   document.querySelectorAll("[data-discord]").forEach((el) => {
     el.href = discord;
   });
 
-  document.querySelectorAll("[data-stripe]").forEach((el) => {
-    if (stripe) {
-      el.href = stripe;
-      el.removeAttribute("aria-disabled");
-    } else {
-      el.href = "#";
-      el.setAttribute("aria-disabled", "true");
-      el.addEventListener("click", (e) => e.preventDefault());
-    }
-  });
-
   const feat = document.getElementById("feat-grid");
-  if (feat && cfg.features) {
-    feat.innerHTML = Object.entries(cfg.features)
-      .map(
-        ([title, items]) =>
-          `<article class="feat"><h3>${title}</h3><ul>${items
-            .map((x) => `<li>${x}</li>`)
-            .join("")}</ul></article>`
-      )
-      .join("");
-  }
-
   const exec = document.getElementById("exec-list");
   if (exec && cfg.executors) {
     exec.innerHTML = cfg.executors.map((n) => `<span>${n}</span>`).join("");
   }
 
-  const snippet = `script_key="YOUR_KEY_HERE";
-loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
-  const code = document.getElementById("loader-snippet");
-  if (code) code.textContent = snippet;
-
+  const snippetEl = document.getElementById("loader-snippet");
+  const howto = document.getElementById("howto");
   const copy = document.getElementById("copy-snippet");
+  let currentSnippet = "";
+
+  const setPlan = (id) => {
+    const plan = plans[id] || plans.skins;
+    if (!plan) return;
+
+    document.querySelectorAll(".plan").forEach((btn) => {
+      btn.classList.toggle("is-on", btn.dataset.plan === id);
+    });
+    document.querySelectorAll(".media-pane").forEach((pane) => {
+      const on = pane.id === "pane-" + id;
+      pane.hidden = !on;
+      pane.classList.toggle("is-on", on);
+    });
+
+    const setText = (elId, value) => {
+      const el = document.getElementById(elId);
+      if (el) el.textContent = value || "";
+    };
+    setText("buy-kicker", plan.kicker);
+    setText("buy-title", plan.title);
+    setText("buy-blurb", plan.blurb);
+    setText("buy-price", plan.price);
+    setText("buy-sub", plan.includes ? plan.includes.join(" · ") : "Lifetime access · one device");
+
+    const was = document.getElementById("buy-was");
+    const save = document.getElementById("buy-save");
+    if (was) {
+      was.textContent = plan.priceWas || "";
+      was.hidden = !plan.priceWas;
+    }
+    if (save) {
+      save.textContent = plan.save || "";
+      save.hidden = !plan.save;
+    }
+
+    const includes = document.getElementById("buy-includes");
+    if (includes) {
+      includes.innerHTML = (plan.includes || []).map((x) => `<li>${x}</li>`).join("");
+    }
+
+    const cta = document.getElementById("buy-cta");
+    if (cta) {
+      cta.textContent = plan.cta || "Pay with card";
+      cta.href = plan.stripeUrl || "#";
+    }
+
+    if (feat && plan.features) {
+      feat.innerHTML = Object.entries(plan.features)
+        .map(
+          ([title, items]) =>
+            `<article class="feat"><h3>${title}</h3><ul>${items
+              .map((x) => `<li>${x}</li>`)
+              .join("")}</ul></article>`
+        )
+        .join("");
+    }
+
+    if (howto) {
+      howto.innerHTML = (plan.setup || []).map((x) => `<li>${x}</li>`).join("");
+    }
+
+    currentSnippet = `script_key="YOUR_KEY_HERE";
+loadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
+    if (snippetEl) snippetEl.textContent = currentSnippet;
+  };
+
+  document.querySelectorAll(".plan").forEach((btn) => {
+    btn.addEventListener("click", () => setPlan(btn.dataset.plan));
+  });
+  setPlan(cfg.defaultPlan || "skins");
+
   if (copy) {
     copy.addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(snippet);
+        await navigator.clipboard.writeText(currentSnippet);
         copy.textContent = "Copied";
         setTimeout(() => (copy.textContent = "Copy"), 1600);
       } catch (_) {}
     });
   }
+
+  const thumbs = [...document.querySelectorAll(".thumb")];
+  const externalMain = document.getElementById("external-main");
+  thumbs.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      thumbs.forEach((t) => t.classList.toggle("is-on", t === btn));
+      if (externalMain && btn.dataset.src) externalMain.src = btn.dataset.src;
+    });
+  });
 
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
@@ -90,7 +146,7 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
   window.addEventListener("resize", () => moveInk(document.querySelector(".tab.is-on")));
   showTab("features");
 
-  const compare = document.getElementById("compare");
+  const compare = document.querySelector(".compare");
   const topImg = document.getElementById("compare-top");
   const ui = document.getElementById("compare-ui");
   if (compare && topImg && ui) {
