@@ -5,176 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Gain — premium Rivals skin changer. HWID-locked keys, fast loader, Discord support."
+      content="Gain — Undetected Rivals skin changer. $5 lifetime. HWID-locked keys. Supported on top executors."
     />
     <title>Gain — Rivals Skin Changer</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%233b82f6' rx='22' width='100' height='100'/><text x='50' y='68' text-anchor='middle' fill='white' font-size='52' font-family='system-ui' font-weight='bold'>G</text></svg>"
+    />
   </head>
   <body>
-    <div class="bg-mesh" aria-hidden="true"></div>
-    <div class="noise" aria-hidden="true"></div>
+    <div class="scene" aria-hidden="true"></div>
+    <div class="grid-floor" aria-hidden="true"></div>
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
 
-    <header>
+    <header class="nav-shell">
       <div class="wrap nav">
-        <div class="logo">
-          <div class="logo-mark" aria-hidden="true">G</div>
+        <a class="logo" href="#">
+          <span class="logo-icon" aria-hidden="true">G</span>
           <span id="brand-name">Gain</span>
-        </div>
+        </a>
         <nav class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#setup">Setup</a>
-          <a href="#faq">FAQ</a>
-          <a class="btn btn-primary" data-discord href="#">Get access</a>
+          <a class="nav-hide" href="#features">Features</a>
+          <a class="nav-hide" href="#executors">Executors</a>
+          <a class="nav-hide" href="#setup">Setup</a>
+          <a class="btn btn-primary" data-discord href="#">Purchase</a>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="wrap hero">
-        <div>
-          <div class="pill">🔒 HWID-locked · Lifetime available</div>
-          <h1>
-            <span id="hero-tag">Rivals Skin Changer</span><br />
-            built for speed &amp; style
-          </h1>
-          <p class="lead">
-            Unlock skins in Rivals with a clean loader, one key per device, and
-            updates when you need them. Purchase on Discord — we send your key
-            after payment.
-          </p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" data-discord href="#">Buy on Discord</a>
-            <a class="btn btn-ghost" href="#setup">How to install</a>
-          </div>
+        <div class="status-row">
+          <span class="chip chip-live"><span class="dot" aria-hidden="true"></span> Undetected</span>
+          <span class="chip chip-blue">Rivals</span>
+          <span class="chip">HWID locked</span>
         </div>
-        <div class="hero-card">
-          <h3>Loader preview</h3>
-          <div class="preview-window">
-            <div class="preview-bar" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </div>
-            <pre class="preview-body" id="preview-code"></pre>
-          </div>
-        </div>
-      </section>
-
-      <section id="features" class="wrap">
-        <div class="section-title">
-          <h2>Why Gain?</h2>
-          <p>Everything buyers care about — nothing bloated.</p>
-        </div>
-        <div class="features">
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true">🎨</div>
-            <h3>Skin changer</h3>
-            <p>Change how you look in Rivals without the hassle.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true">⚡</div>
-            <h3>Fast &amp; lightweight</h3>
-            <p>Optimized build — smooth performance in-game.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true">🔐</div>
-            <h3>Key protection</h3>
-            <p>Each key locks to one device so keys can’t be shared easily.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true">🛠️</div>
-            <h3>Simple loader</h3>
-            <p>Luarmor-style: set <code>script_key</code> and run one line.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true">💬</div>
-            <h3>Discord support</h3>
-            <p>Real help if something breaks — talk to us directly.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon" aria-hidden="true">🔄</div>
-            <h3>Updates</h3>
-            <p>Lifetime buyers get updates when Rivals patches.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="pricing" class="wrap">
-        <div class="section-title">
-          <h2>Pricing</h2>
-          <p>Pay on Discord — we deliver your key manually (instant when online).</p>
-        </div>
-        <div class="pricing" id="pricing-grid"></div>
-        <p style="text-align: center; color: var(--muted); font-size: 0.88rem; margin-top: 1.5rem">
-          Want automatic checkout later? You can add Gumroad or Stripe — ask in Discord.
+        <h1><span class="gradient-text" id="hero-tag">Rivals Skin Changer</span></h1>
+        <p class="hero-sub">
+          Premium skins for Rivals — built for Gain. One key, one device, lifetime access.
+          Purchase on Discord today; card checkout coming soon.
         </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" data-discord href="#">Get Lifetime — $5</a>
+          <a class="btn btn-ghost" href="#setup">Installation</a>
+        </div>
       </section>
 
-      <section id="setup" class="wrap">
-        <div class="section-title">
-          <h2>Setup (after purchase)</h2>
-          <p>Works with common Roblox executors that support HTTP.</p>
+      <section class="wrap shop-grid" id="pricing">
+        <div>
+          <div class="panel" id="features">
+            <div class="panel-head">Why Gain</div>
+            <div class="panel-body">
+              <ul class="feature-list">
+                <li>
+                  <span class="ico" aria-hidden="true">🛡️</span>
+                  <div>
+                    <strong>Undetected</strong>
+                    Maintained with Rivals updates in mind — status shown live on this page.
+                  </div>
+                </li>
+                <li>
+                  <span class="ico" aria-hidden="true">⚡</span>
+                  <div>
+                    <strong>Native performance</strong>
+                    Lightweight loader — no bloated VM, smooth in-game.
+                  </div>
+                </li>
+                <li>
+                  <span class="ico" aria-hidden="true">🔐</span>
+                  <div>
+                    <strong>HWID protection</strong>
+                    Keys bind to your device so they can’t be shared.
+                  </div>
+                </li>
+                <li>
+                  <span class="ico" aria-hidden="true">🎨</span>
+                  <div>
+                    <strong>Full skin control</strong>
+                    Change your look in Rivals the way you want.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="panel" id="executors" style="margin-top: 1.25rem">
+            <div class="panel-head">Supported executors</div>
+            <div class="panel-body">
+              <p style="margin: 0 0 1rem; color: var(--muted); font-size: 0.9rem">
+                Tested and supported on the following (HTTP + loadstring required):
+              </p>
+              <div class="executor-grid" id="executor-grid"></div>
+            </div>
+          </div>
         </div>
+
+        <aside class="product-card">
+          <div class="product-inner">
+            <span class="product-badge">Best seller</span>
+            <h2 class="product-title" id="price-label">Lifetime</h2>
+            <p style="margin: 0; color: var(--muted); font-size: 0.9rem" id="hero-tag-sub">
+              <span id="brand-name-2">Gain</span> · Rivals
+            </p>
+            <p class="product-price" id="price-amount">$5</p>
+            <p class="product-note" id="price-note">One-time · HWID locked · All updates included</p>
+            <ul class="product-perks">
+              <li>Lifetime license</li>
+              <li>1 device per key</li>
+              <li>Discord support</li>
+              <li>Future updates included</li>
+            </ul>
+            <a class="btn btn-primary btn-block" data-discord href="#">Buy on Discord — $5</a>
+            <p class="pay-later">Automatic payments (SellAuth / Stripe) — coming soon</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="wrap section" id="setup">
+        <h2 class="section-title">How to run</h2>
         <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <strong>Get your key</strong>
-            <p style="color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0">
-              We send a unique <code>script_key</code> on Discord after payment.
-            </p>
+          <div class="step-card">
+            <div class="step-num">Step 01</div>
+            <h3>Purchase</h3>
+            <p>Buy on Discord. We send your unique <code>script_key</code>.</p>
           </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <strong>Open Rivals</strong>
-            <p style="color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0">
-              Join a game, open your executor, and paste the loader below.
-            </p>
+          <div class="step-card">
+            <div class="step-num">Step 02</div>
+            <h3>Join Rivals</h3>
+            <p>Open Roblox, launch Rivals, then open your executor.</p>
           </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <strong>Run once per device</strong>
-            <p style="color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0">
-              First run binds your HWID. Don’t share your key.
-            </p>
+          <div class="step-card">
+            <div class="step-num">Step 03</div>
+            <h3>Execute</h3>
+            <p>Paste the loader below with your key and run once per PC.</p>
           </div>
         </div>
-        <div class="code-block">
+        <div class="code-wrap">
           <button type="button" class="copy-btn" id="copy-snippet">Copy</button>
-          <code id="loader-snippet"></code>
+          <pre><code id="loader-snippet"></code></pre>
         </div>
       </section>
 
-      <section id="faq" class="wrap">
-        <div class="section-title">
-          <h2>FAQ</h2>
-        </div>
+      <section class="wrap section" id="faq">
+        <h2 class="section-title">FAQ</h2>
         <div class="faq">
           <details open>
-            <summary>How do I buy?</summary>
+            <summary>How do I pay?</summary>
             <p>
-              Click <strong>Buy on Discord</strong>, open a ticket or DM, and say which plan you
-              want. We’ll send payment details and your key.
+              For now, purchase through Discord. We’ll add card checkout later — your site is ready
+              for it when you are.
             </p>
           </details>
           <details>
-            <summary>Can I share my key with a friend?</summary>
+            <summary>Is it really undetected?</summary>
             <p>
-              No. Keys are HWID-locked to <strong>one device</strong>. A second PC will be denied.
+              We label the product undetected based on current testing. No software is risk-free —
+              use at your own discretion and follow our update notices on Discord.
             </p>
           </details>
           <details>
-            <summary>What executors work?</summary>
-            <p>
-              Any executor with <code>HttpGet</code> and <code>loadstring</code> (and optional
-              <code>syn.request</code> for license checks). If yours fails, message us on Discord.
-            </p>
+            <summary>Can I share my key?</summary>
+            <p>No. Each key locks to one HWID on first use.</p>
           </details>
           <details>
-            <summary>I got “License denied”</summary>
+            <summary>My executor isn’t listed</summary>
             <p>
-              Double-check <code>script_key</code>, use the loader from this site, and make sure
-              you’re not using a key already bound to another PC. Contact support with your key
-              (DM only).
+              If it supports <code>HttpGet</code> and <code>loadstring</code>, it may still work.
+              Ask on Discord before buying.
             </p>
           </details>
         </div>
@@ -183,10 +182,7 @@
 
     <footer>
       <div class="wrap">
-        <p>
-          © <span id="year"></span> <span id="footer-brand">Gain</span> · Not affiliated with
-          Roblox or Rivals.
-        </p>
+        <p>© <span id="year"></span> <span id="footer-brand">Gain</span> · Not affiliated with Roblox or Rivals.</p>
         <p><a data-discord href="#">Discord support</a></p>
       </div>
     </footer>
@@ -194,7 +190,7 @@
     <script src="site-config.js"></script>
     <script src="main.js"></script>
     <script>
-      document.getElementById("footer-brand").textContent =
+      document.getElementById("brand-name-2").textContent =
         (window.GAIN_STORE && window.GAIN_STORE.brand) || "Gain";
     </script>
   </body>
