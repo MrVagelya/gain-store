@@ -6,20 +6,15 @@
     <meta name="description" content="Gain — Rivals skin changer. $5 lifetime." />
     <title>Gain — Rivals Skin Changer</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%233b82f6'/></svg>"
-    />
   </head>
   <body>
-    <div class="bg" aria-hidden="true"></div>
-
     <header>
       <div class="bar">
         <a class="brand" href="#">Gain</a>
         <nav>
+          <a href="#preview">Preview</a>
           <a href="#features">Features</a>
-          <a href="#executors">Executors</a>
+          <a href="#executors">Support</a>
           <a class="buy" data-discord href="https://discord.gg/PBMHrgJ4Kd">Buy</a>
         </nav>
       </div>
@@ -27,31 +22,37 @@
 
     <main class="page">
       <section class="product">
-        <div class="preview">
-          <div class="preview-mark">GAIN</div>
-          <div class="preview-meta">
-            <span class="status">UNDETECTED</span>
-            <span>RIVALS</span>
+        <div class="compare" id="compare" aria-label="Before and after comparison">
+          <img class="compare-after" src="images/after.jpg" alt="After Gain" draggable="false" />
+          <div class="compare-before-wrap" id="compare-before-wrap">
+            <img class="compare-before" src="images/before.jpg" alt="Before Gain" draggable="false" />
           </div>
+          <div class="compare-line" id="compare-line"></div>
+          <button class="compare-handle" id="compare-handle" type="button" aria-label="Drag to compare"></button>
+          <span class="compare-tag left">Before</span>
+          <span class="compare-tag right">After</span>
         </div>
 
-        <div class="buybox">
-          <p class="kicker">Product</p>
+        <aside class="buybox">
+          <p class="kicker">License</p>
           <h1>Rivals Skin Changer</h1>
-          <p class="price"><span>$</span>5.00</p>
-          <p class="sub">Lifetime · 1 device · HWID lock</p>
+          <p class="status">Undetected</p>
+          <p class="price">$5.00</p>
+          <p class="sub">Lifetime access · one device</p>
 
           <label class="field">
-            Variant
+            Plan
             <select disabled>
               <option>Lifetime — $5.00</option>
             </select>
           </label>
 
-          <a class="cta" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord</a>
-          <p class="hint">Card checkout later. Key delivered in Discord.</p>
-        </div>
+          <a class="cta" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase</a>
+          <p class="hint">Payment is handled in Discord. Online checkout will be added later.</p>
+        </aside>
       </section>
+
+      <section id="preview" class="block sr-only"></section>
 
       <section id="features" class="block">
         <h2>Features</h2>
@@ -61,14 +62,18 @@
       <section id="executors" class="block">
         <h2>Supported executors</h2>
         <div class="exec" id="exec-list"></div>
+        <p class="exec-note">
+          These executors are supported. If yours is not listed and you need confirmation,
+          <a data-discord href="https://discord.gg/PBMHrgJ4Kd">join the Discord</a>.
+        </p>
       </section>
 
       <section id="setup" class="block">
-        <h2>Load</h2>
+        <h2>Installation</h2>
         <ol class="howto">
-          <li>Pay in Discord, receive a key.</li>
-          <li>Open Rivals, then your executor.</li>
-          <li>Paste the loader with your key.</li>
+          <li>Purchase in Discord and receive your key.</li>
+          <li>Join Rivals and open your executor.</li>
+          <li>Run the loader with your key.</li>
         </ol>
         <div class="code">
           <button type="button" id="copy-snippet">Copy</button>

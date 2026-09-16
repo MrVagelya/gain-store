@@ -41,4 +41,56 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
 
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
+
+  const root = document.getElementById("compare");
+  const wrap = document.getElementById("compare-before-wrap");
+  const line = document.getElementById("compare-line");
+  const handle = document.getElementById("compare-handle");
+  const beforeImg = root && root.querySelector(".compare-before");
+  if (root && wrap && line && handle && beforeImg) {
+    let split = 50;
+    let dragging = false;
+
+    const sizeBefore = () => {
+      beforeImg.style.width = root.clientWidth + "px";
+    };
+
+    const apply = (pct) => {
+      split = Math.min(98, Math.max(2, pct));
+      wrap.style.width = split + "%";
+      line.style.left = split + "%";
+      handle.style.left = split + "%";
+      sizeBefore();
+    };
+
+    window.addEventListener("resize", sizeBefore);
+
+    const fromEvent = (e) => {
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      const rect = root.getBoundingClientRect();
+      apply(((x - rect.left) / rect.width) * 100);
+    };
+
+    root.addEventListener("mousedown", (e) => {
+      dragging = true;
+      fromEvent(e);
+    });
+    window.addEventListener("mousemove", (e) => {
+      if (dragging) fromEvent(e);
+    });
+    window.addEventListener("mouseup", () => {
+      dragging = false;
+    });
+    root.addEventListener("touchstart", (e) => {
+      dragging = true;
+      fromEvent(e);
+    }, { passive: true });
+    window.addEventListener("touchmove", (e) => {
+      if (dragging) fromEvent(e);
+    }, { passive: true });
+    window.addEventListener("touchend", () => {
+      dragging = false;
+    });
+    apply(50);
+  }
 })();
