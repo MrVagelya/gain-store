@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gain — Rivals skin changer. $5 lifetime." />
     <title>Gain — Rivals Skin Changer</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
+    <div class="fx-grid" aria-hidden="true"></div>
+    <div class="fx-glow" aria-hidden="true"></div>
+
     <header>
       <div class="bar">
         <a class="brand" href="#">Gain</a>
         <nav>
-          <a href="#preview">Preview</a>
-          <a href="#features">Features</a>
-          <a href="#executors">Support</a>
+          <a href="#shop">Product</a>
+          <a href="#info">Details</a>
           <a class="buy" data-discord href="https://discord.gg/PBMHrgJ4Kd">Buy</a>
         </nav>
       </div>
     </header>
 
     <main class="page">
-      <section class="product">
-        <div class="compare" id="compare" aria-label="Before and after comparison">
-          <img class="compare-after" src="images/after.jpg" alt="After Gain" draggable="false" />
-          <div class="compare-before-wrap" id="compare-before-wrap">
-            <img class="compare-before" src="images/before.jpg" alt="Before Gain" draggable="false" />
+      <section class="product" id="shop">
+        <div class="compare" id="compare">
+          <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
+          <img class="compare-img compare-top" id="compare-top" src="images/before.jpg" alt="Before" draggable="false" />
+          <div class="compare-ui" id="compare-ui">
+            <div class="compare-line"></div>
+            <div class="compare-knob"></div>
           </div>
-          <div class="compare-line" id="compare-line"></div>
-          <button class="compare-handle" id="compare-handle" type="button" aria-label="Drag to compare"></button>
           <span class="compare-tag left">Before</span>
           <span class="compare-tag right">After</span>
         </div>
@@ -36,7 +38,7 @@
         <aside class="buybox">
           <p class="kicker">License</p>
           <h1>Rivals Skin Changer</h1>
-          <p class="status">Undetected</p>
+          <p class="status"><span class="pulse"></span> Undetected</p>
           <p class="price">$5.00</p>
           <p class="sub">Lifetime access · one device</p>
 
@@ -52,32 +54,36 @@
         </aside>
       </section>
 
-      <section id="preview" class="block sr-only"></section>
+      <section class="tabs" id="info">
+        <div class="tab-bar" role="tablist">
+          <button class="tab is-on" type="button" data-tab="features" role="tab">Features</button>
+          <button class="tab" type="button" data-tab="executors" role="tab">Executors</button>
+          <button class="tab" type="button" data-tab="setup" role="tab">Installation</button>
+          <span class="tab-ink" id="tab-ink"></span>
+        </div>
 
-      <section id="features" class="block">
-        <h2>Features</h2>
-        <div class="feat-grid" id="feat-grid"></div>
-      </section>
-
-      <section id="executors" class="block">
-        <h2>Supported executors</h2>
-        <div class="exec" id="exec-list"></div>
-        <p class="exec-note">
-          These executors are supported. If yours is not listed and you need confirmation,
-          <a data-discord href="https://discord.gg/PBMHrgJ4Kd">join the Discord</a>.
-        </p>
-      </section>
-
-      <section id="setup" class="block">
-        <h2>Installation</h2>
-        <ol class="howto">
-          <li>Purchase in Discord and receive your key.</li>
-          <li>Join Rivals and open your executor.</li>
-          <li>Run the loader with your key.</li>
-        </ol>
-        <div class="code">
-          <button type="button" id="copy-snippet">Copy</button>
-          <pre><code id="loader-snippet"></code></pre>
+        <div class="tab-panels">
+          <div class="panel is-on" id="panel-features" role="tabpanel">
+            <div class="feat-grid" id="feat-grid"></div>
+          </div>
+          <div class="panel" id="panel-executors" role="tabpanel">
+            <div class="exec" id="exec-list"></div>
+            <p class="exec-note">
+              These executors are supported. If yours is not listed and you need confirmation,
+              <a data-discord href="https://discord.gg/PBMHrgJ4Kd">join the Discord</a>.
+            </p>
+          </div>
+          <div class="panel" id="panel-setup" role="tabpanel">
+            <ol class="howto">
+              <li>Purchase in Discord and receive your key.</li>
+              <li>Join Rivals and open your executor.</li>
+              <li>Run the loader with your key.</li>
+            </ol>
+            <div class="code">
+              <button type="button" id="copy-snippet">Copy</button>
+              <pre><code id="loader-snippet"></code></pre>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -87,7 +93,7 @@
       <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord</a>
     </footer>
 
-    <script src="site-config.js"></script>
-    <script src="main.js"></script>
+    <script src="site-config.js?v=3"></script>
+    <script src="main.js?v=3"></script>
   </body>
 </html>

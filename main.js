@@ -42,55 +42,63 @@ loadstring(game:HttpGet("${cfg.loaderUrl || ""}"))()`;
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  const root = document.getElementById("compare");
-  const wrap = document.getElementById("compare-before-wrap");
-  const line = document.getElementById("compare-line");
-  const handle = document.getElementById("compare-handle");
-  const beforeImg = root && root.querySelector(".compare-before");
-  if (root && wrap && line && handle && beforeImg) {
-    let split = 50;
+  const tabs = [...document.querySelectorAll(".tab")];
+  const ink = document.getElementById("tab-ink");
+  const moveInk = (btn) => {
+    if (!ink || !btn) return;
+    ink.style.width = btn.offsetWidth + "px";
+    ink.style.left = btn.offsetLeft + "px";
+  };
+  const showTab = (id) => {
+    tabs.forEach((t) => t.classList.toggle("is-on", t.dataset.tab === id));
+    document.querySelectorAll(".panel").forEach((p) => {
+      p.classList.toggle("is-on", p.id === "panel-" + id);
+    });
+    moveInk(tabs.find((t) => t.dataset.tab === id));
+  };
+  tabs.forEach((t) => t.addEventListener("click", () => showTab(t.dataset.tab)));
+  window.addEventListener("resize", () => moveInk(document.querySelector(".tab.is-on")));
+  showTab("features");
+
+  const compare = document.getElementById("compare");
+  const topImg = document.getElementById("compare-top");
+  const ui = document.getElementById("compare-ui");
+  if (compare && topImg && ui) {
     let dragging = false;
 
-    const sizeBefore = () => {
-      beforeImg.style.width = root.clientWidth + "px";
+    const setSplit = (clientX) => {
+      const rect = compare.getBoundingClientRect();
+      let pct = ((clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(1, Math.min(99, pct));
+      topImg.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+      ui.style.left = pct + "%";
     };
 
-    const apply = (pct) => {
-      split = Math.min(98, Math.max(2, pct));
-      wrap.style.width = split + "%";
-      line.style.left = split + "%";
-      handle.style.left = split + "%";
-      sizeBefore();
-    };
-
-    window.addEventListener("resize", sizeBefore);
-
-    const fromEvent = (e) => {
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      const rect = root.getBoundingClientRect();
-      apply(((x - rect.left) / rect.width) * 100);
-    };
-
-    root.addEventListener("mousedown", (e) => {
+    const start = (e) => {
       dragging = true;
-      fromEvent(e);
-    });
-    window.addEventListener("mousemove", (e) => {
-      if (dragging) fromEvent(e);
-    });
-    window.addEventListener("mouseup", () => {
+      compare.classList.add("is-drag");
+      const pt = e.touches ? e.touches[0] : e;
+      setSplit(pt.clientX);
+      e.preventDefault();
+    };
+    const move = (e) => {
+      if (!dragging) return;
+      const pt = e.touches ? e.touches[0] : e;
+      setSplit(pt.clientX);
+      if (e.cancelable) e.preventDefault();
+    };
+    const end = () => {
       dragging = false;
-    });
-    root.addEventListener("touchstart", (e) => {
-      dragging = true;
-      fromEvent(e);
-    }, { passive: true });
-    window.addEventListener("touchmove", (e) => {
-      if (dragging) fromEvent(e);
-    }, { passive: true });
-    window.addEventListener("touchend", () => {
-      dragging = false;
-    });
-    apply(50);
+      compare.classList.remove("is-drag");
+    };
+
+    compare.addEventListener("pointerdown", start);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", end);
+    window.addEventListener("pointercancel", end);
+    compare.addEventListener("touchstart", start, { passive: false });
+    window.addEventListener("touchmove", move, { passive: false });
+    window.addEventListener("touchend", end);
+    setSplit(compare.getBoundingClientRect().left + compare.clientWidth * 0.5);
   }
 })();
