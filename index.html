@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gain — Rivals Skin Changer and External. Lifetime licenses from $3.50." />
     <title>Gain — Skin Changer &amp; External</title>
-    <link rel="stylesheet" href="styles.css?v=14" />
+    <link rel="stylesheet" href="styles.css?v=15" />
   </head>
   <body>
     <div class="fx-grid" aria-hidden="true"></div>
@@ -68,12 +68,23 @@
             </div>
 
             <div class="bundle-shot media-pane" id="pane-bundle" hidden>
-              <figure>
-                <img src="images/after.jpg" alt="Skin Changer" />
+              <figure class="bundle-skins">
+                <div class="compare" id="compare-bundle">
+                  <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
+                  <img class="compare-img compare-top" id="compare-top-bundle" src="images/before.jpg" alt="Before" draggable="false" />
+                  <div class="compare-ui" id="compare-ui-bundle">
+                    <div class="compare-line"></div>
+                    <div class="compare-knob"></div>
+                  </div>
+                  <span class="compare-tag left">Before</span>
+                  <span class="compare-tag right">After</span>
+                </div>
                 <figcaption>Skin Changer</figcaption>
               </figure>
-              <figure>
-                <img src="images/external.png" alt="Gain External" />
+              <figure class="bundle-ext">
+                <div class="bundle-ext-frame">
+                  <img src="images/external.png" alt="Gain External" />
+                </div>
                 <figcaption>External</figcaption>
               </figure>
             </div>
@@ -96,7 +107,7 @@
             <ul class="includes" id="buy-includes"></ul>
             <a class="cta" id="buy-cta" href="#">Pay with card — $3.50</a>
             <a class="cta-secondary" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord</a>
-            <p class="hint">Instant keys after card payment. Discord is also available.</p>
+            <p class="hint">Instant keys after card payment. Discord is also available. Discount codes can be entered at checkout.</p>
           </aside>
         </div>
       </section>
@@ -139,7 +150,7 @@
       <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord</a>
     </footer>
 
-    <script src="site-config.js?v=14"></script>
-    <script src="main.js?v=14"></script>
+    <script src="site-config.js?v=15"></script>
+    <script src="main.js?v=15"></script>
   </body>
 </html>

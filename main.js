@@ -81,6 +81,17 @@
     currentSnippet = `script_key="YOUR_KEY_HERE";
 loadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
     if (snippetEl) snippetEl.textContent = currentSnippet;
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll(".compare").forEach((el) => {
+        const top = el.querySelector(".compare-top");
+        const handle = el.querySelector(".compare-ui");
+        const rect = el.getBoundingClientRect();
+        if (!top || !handle || !rect.width) return;
+        top.style.clipPath = "inset(0 50% 0 0)";
+        handle.style.left = "50%";
+      });
+    });
   };
 
   document.querySelectorAll(".plan").forEach((btn) => {
@@ -137,18 +148,22 @@ loadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
   window.addEventListener("resize", () => moveInk(document.querySelector(".tab.is-on")));
   showTab("features");
 
-  const compare = document.querySelector(".compare");
-  const topImg = document.getElementById("compare-top");
-  const ui = document.getElementById("compare-ui");
-  if (compare && topImg && ui) {
+  const bindCompare = (compare, topImg, ui) => {
+    if (!compare || !topImg || !ui) return () => {};
     let dragging = false;
 
     const setSplit = (clientX) => {
       const rect = compare.getBoundingClientRect();
+      if (!rect.width) return;
       let pct = ((clientX - rect.left) / rect.width) * 100;
       pct = Math.max(1, Math.min(99, pct));
       topImg.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
       ui.style.left = pct + "%";
+    };
+
+    const center = () => {
+      const rect = compare.getBoundingClientRect();
+      if (rect.width) setSplit(rect.left + rect.width * 0.5);
     };
 
     const start = (e) => {
@@ -176,8 +191,22 @@ loadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
     compare.addEventListener("touchstart", start, { passive: false });
     window.addEventListener("touchmove", move, { passive: false });
     window.addEventListener("touchend", end);
-    setSplit(compare.getBoundingClientRect().left + compare.clientWidth * 0.5);
-  }
+    center();
+    return center;
+  };
+
+  const refreshCompares = [
+    bindCompare(
+      document.querySelector("#pane-skins.compare"),
+      document.getElementById("compare-top"),
+      document.getElementById("compare-ui")
+    ),
+    bindCompare(
+      document.getElementById("compare-bundle"),
+      document.getElementById("compare-top-bundle"),
+      document.getElementById("compare-ui-bundle")
+    ),
+  ];
 
   const glow = document.getElementById("cursor-glow");
   let gx = innerWidth / 2;

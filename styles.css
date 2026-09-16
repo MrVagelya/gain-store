@@ -299,23 +299,52 @@ nav .buy:hover {
 
 .bundle-shot {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 0.55rem;
+  align-items: stretch;
 }
 
 .bundle-shot figure {
   margin: 0;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
   border-radius: 10px;
   overflow: hidden;
-  background: #000;
+  background: #0b0d12;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
-.bundle-shot img {
-  width: 100%;
+.bundle-skins,
+.bundle-ext {
+  min-height: 0;
+  height: 100%;
+}
+
+.bundle-skins .compare {
+  flex: 1;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  aspect-ratio: 16 / 9;
+}
+
+.bundle-ext-frame {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b0d12;
+  min-height: 0;
+  padding: 0.45rem;
+}
+
+.bundle-ext-frame img {
+  width: auto;
   height: auto;
-  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .bundle-shot figcaption {
