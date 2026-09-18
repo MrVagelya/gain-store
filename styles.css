@@ -127,9 +127,20 @@ header {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 650;
   letter-spacing: -0.03em;
   font-size: 1.05rem;
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(45, 79, 130, 0.45));
 }
 
 nav {
@@ -934,4 +945,17 @@ footer {
 
 footer a:hover {
   color: var(--text);
+}
+
+.foot-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.foot-brand img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.9;
 }

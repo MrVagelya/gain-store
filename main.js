@@ -39,7 +39,7 @@
     setText("buy-title", plan.title);
     setText("buy-blurb", plan.blurb);
     setText("buy-price", plan.price);
-    setText("buy-sub", plan.includes ? plan.includes.join(" · ") : "Lifetime access · one device");
+    setText("buy-sub", plan.includes ? plan.includes.join(" · ") : "Insane performance · Lifetime access");
 
     const was = document.getElementById("buy-was");
     const save = document.getElementById("buy-save");

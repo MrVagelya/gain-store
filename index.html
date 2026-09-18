@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gain — Rivals Skin Changer and External. Lifetime licenses from $3.50." />
     <title>Gain — Skin Changer &amp; External</title>
-    <link rel="stylesheet" href="styles.css?v=15" />
+    <link rel="stylesheet" href="styles.css?v=16" />
+    <link rel="icon" href="images/logo.png" type="image/png" />
   </head>
   <body>
     <div class="fx-grid" aria-hidden="true"></div>
@@ -16,7 +17,10 @@
 
     <header>
       <div class="bar">
-        <a class="brand" href="#">Gain</a>
+        <a class="brand" href="#">
+          <img src="images/logo.png" alt="" />
+          Gain
+        </a>
         <nav>
           <a href="#shop">Products</a>
           <a href="#info">Details</a>
@@ -28,13 +32,13 @@
     <main class="page">
       <section class="catalog" id="shop">
         <div class="plans" role="tablist" aria-label="Products">
-          <button class="plan" type="button" data-plan="skins">
+          <button class="plan is-on" type="button" data-plan="skins">
             <span class="plan-kicker">Internal</span>
             <strong>Skin Changer</strong>
             <span class="plan-copy">Cosmetics, visuals, spoof</span>
             <span class="plan-price">$5.00</span>
           </button>
-          <button class="plan is-on" type="button" data-plan="external">
+          <button class="plan" type="button" data-plan="external">
             <span class="badge">Sale</span>
             <span class="plan-kicker">External</span>
             <strong>Gain External</strong>
@@ -52,7 +56,7 @@
 
         <div class="product">
           <div class="media">
-            <div class="compare media-pane" id="pane-skins" hidden>
+            <div class="compare media-pane is-on" id="pane-skins">
               <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
               <img class="compare-img compare-top" id="compare-top" src="images/before.jpg" alt="Before" draggable="false" />
               <div class="compare-ui" id="compare-ui">
@@ -63,7 +67,7 @@
               <span class="compare-tag right">After</span>
             </div>
 
-            <div class="shot media-pane is-on" id="pane-external">
+            <div class="shot media-pane" id="pane-external" hidden>
               <img src="images/external.png" alt="Gain External" />
             </div>
 
@@ -91,21 +95,21 @@
           </div>
 
           <aside class="buybox">
-            <p class="kicker" id="buy-kicker">External</p>
-            <h1 id="buy-title">Gain External</h1>
+            <p class="kicker" id="buy-kicker">Internal</p>
+            <h1 id="buy-title">Rivals Skin Changer</h1>
             <p class="status"><span class="pulse"></span> Undetected</p>
             <p class="sales" id="sales-line" hidden>
               <span class="sales-num" id="sales-num">0</span> completed sales
             </p>
-            <p class="lede" id="buy-blurb">Standalone overlay: ESP, motion, combat, and world tools.</p>
+            <p class="lede" id="buy-blurb">In-game cosmetics, visuals, and spoof tools.</p>
             <div class="price-row">
-              <p class="price" id="buy-price">$3.50</p>
-              <p class="price-was" id="buy-was">$5.00</p>
-              <span class="save" id="buy-save">30% off</span>
+              <p class="price" id="buy-price">$5.00</p>
+              <p class="price-was" id="buy-was" hidden></p>
+              <span class="save" id="buy-save" hidden></span>
             </div>
-            <p class="sub" id="buy-sub">Lifetime access · one device</p>
+            <p class="sub" id="buy-sub">Insane performance · Instant updates · Lifetime access</p>
             <ul class="includes" id="buy-includes"></ul>
-            <a class="cta" id="buy-cta" href="#">Pay with card — $3.50</a>
+            <a class="cta" id="buy-cta" href="#">Pay with card — $5.00</a>
             <a class="cta-secondary" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord</a>
             <p class="hint">Instant keys after card payment. Discord is also available. Discount codes can be entered at checkout.</p>
           </aside>
@@ -146,11 +150,11 @@
     </main>
 
     <footer>
-      <span>© <span id="year"></span> Gain</span>
+      <span class="foot-brand"><img src="images/logo.png" alt="" /> © <span id="year"></span> Gain</span>
       <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord</a>
     </footer>
 
-    <script src="site-config.js?v=15"></script>
-    <script src="main.js?v=15"></script>
+    <script src="site-config.js?v=16"></script>
+    <script src="main.js?v=16"></script>
   </body>
 </html>

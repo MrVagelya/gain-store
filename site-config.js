@@ -7,7 +7,7 @@ window.GAIN_STORE = {
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/download",
   salesStatsUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/stats/sales",
-  defaultPlan: "external",
+  defaultPlan: "skins",
   plans: {
     skins: {
       id: "skins",
@@ -22,7 +22,7 @@ window.GAIN_STORE = {
       stripeUrl: "https://buy.stripe.com/dRm6oGeOv8lW76k106dQQ00",
       loaderUrl:
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
-      includes: ["Lifetime access", "One device", "HWID locked"],
+      includes: ["Insane performance", "Instant updates", "Lifetime access"],
       setup: [
         "Pay with card or purchase on Discord.",
         "Join Rivals and open your executor.",
@@ -63,7 +63,7 @@ window.GAIN_STORE = {
         Other: [
           "Config profiles + autoload",
           "Accent color & menu key",
-          "HWID-locked license",
+          "Insane performance",
           "Undetected status",
         ],
       },
@@ -81,7 +81,7 @@ window.GAIN_STORE = {
       stripeUrl: "https://buy.stripe.com/dRm6oG8q7dGg62g4cidQQ02",
       loaderUrl:
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/external",
-      includes: ["Lifetime access", "One device", "HWID locked"],
+      includes: ["Insane performance", "Instant updates", "Lifetime access"],
       setup: [
         "Pay with card. Your key is shown instantly and emailed.",
         "Open Gain External and paste your license key.",
@@ -106,7 +106,7 @@ window.GAIN_STORE = {
         ],
         Combat: ["Combat tab tools", "Target HUD", "Lock mouse to player"],
         Visuals: ["Crosshair", "Camera FOV", "World / misc tabs"],
-        Other: ["Standalone overlay", "HWID-locked license", "Undetected status"],
+        Other: ["Standalone overlay", "Insane performance", "Undetected status"],
       },
     },
     bundle: {
@@ -123,9 +123,9 @@ window.GAIN_STORE = {
       loaderUrl:
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
       includes: [
-        "Skin Changer lifetime key",
-        "External lifetime key",
-        "One device each",
+        "Insane performance",
+        "Both products included",
+        "Lifetime access",
       ],
       setup: [
         "Pay once. You receive two keys on the success page and by email.",
