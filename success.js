@@ -29,15 +29,18 @@
         const name = String(item.name || "License");
         const key = String(item.key || "");
         const snippet = String(item.snippet || "");
+        const snippetHtml = snippet
+          ? `<div class="code">
+            <button type="button" class="copy-btn" data-kind="snippet" data-i="${i}">Copy loader</button>
+            <pre><code></code></pre>
+          </div>`
+          : `<p class="hint">Paste this key into Gain External. Download the zip below — this is not a Roblox script and has no loader.</p>`;
         return `
         <div class="license-block">
           <p class="kicker">${name}</p>
           <code>${key}</code>
           <button type="button" class="copy-btn" data-kind="key" data-i="${i}">Copy key</button>
-          <div class="code">
-            <button type="button" class="copy-btn" data-kind="snippet" data-i="${i}">Copy loader</button>
-            <pre><code></code></pre>
-          </div>
+          ${snippetHtml}
         </div>`;
       })
       .join("");
@@ -70,8 +73,8 @@
         if (status) status.textContent = "Your license is ready.";
         if (emailNotice && data.email) {
           emailNotice.textContent = data.emailSent
-            ? "We emailed your license key and loader script to " + data.email + "."
-            : "Sending your license to " + data.email + "… You can still copy it below.";
+            ? "We emailed your delivery details to " + data.email + "."
+            : "Sending your delivery to " + data.email + "… You can still copy it below.";
           emailNotice.hidden = false;
         }
         const items =

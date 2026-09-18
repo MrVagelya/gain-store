@@ -14,6 +14,7 @@
   }
 
   const snippetEl = document.getElementById("loader-snippet");
+  const snippetBox = document.getElementById("loader-box");
   const howto = document.getElementById("howto");
   const copy = document.getElementById("copy-snippet");
   let currentSnippet = "";
@@ -78,9 +79,15 @@
       howto.innerHTML = (plan.setup || []).map((x) => `<li>${x}</li>`).join("");
     }
 
-    currentSnippet = `script_key="YOUR_KEY_HERE";
+    if (plan.id === "external") {
+      currentSnippet = "";
+      if (snippetBox) snippetBox.hidden = true;
+    } else {
+      currentSnippet = `script_key="YOUR_KEY_HERE";
 loadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
-    if (snippetEl) snippetEl.textContent = currentSnippet;
+      if (snippetBox) snippetBox.hidden = false;
+      if (snippetEl) snippetEl.textContent = currentSnippet;
+    }
 
     requestAnimationFrame(() => {
       document.querySelectorAll(".compare").forEach((el) => {

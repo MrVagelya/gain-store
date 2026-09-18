@@ -83,9 +83,9 @@ window.GAIN_STORE = {
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/external",
       includes: ["Insane performance", "Instant updates", "Lifetime access"],
       setup: [
-        "Pay with card. Your key is shown instantly and emailed.",
-        "Open Gain External and paste your license key.",
-        "Need the installer? Join Discord after purchase.",
+        "Pay with card. Your key and download appear on the success page.",
+        "Download Gain External (zip). It is not a Roblox script.",
+        "Open the app and paste your license key. Do not use script_key or a loader.",
       ],
       features: {
         ESP: [
@@ -128,9 +128,9 @@ window.GAIN_STORE = {
         "Lifetime access",
       ],
       setup: [
-        "Pay once. You receive two keys on the success page and by email.",
-        "Use the Skin Changer key in your executor.",
-        "Use the External key in Gain External.",
+        "Pay once. Skin Changer gets a Roblox loader. External gets a zip + app key.",
+        "Use the Skin Changer key with the executor loader only.",
+        "Download External from the success page and paste its key in the app — not in Roblox.",
       ],
       features: {
         Included: [
