@@ -5,158 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gain — Rivals Skin Changer and External. Lifetime licenses from $3.50." />
     <title>Gain — Skin Changer &amp; External</title>
-    <link rel="stylesheet" href="styles.css?v=19" />
+    <link rel="stylesheet" href="styles.css?v=20" />
     <link rel="icon" href="images/logo.png" type="image/png" />
   </head>
   <body>
     <div class="fx-grid" aria-hidden="true"></div>
-    <div class="fx-glow" aria-hidden="true"></div>
+    <div class="fx-orb fx-orb-one" aria-hidden="true"></div>
+    <div class="fx-orb fx-orb-two" aria-hidden="true"></div>
     <div class="fx-vignette" aria-hidden="true"></div>
-    <canvas id="snow" aria-hidden="true"></canvas>
-    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
-    <header>
+    <header class="site-header">
       <div class="bar">
-        <a class="brand" href="#">
-          <span class="brand-mark">
-            <img src="images/logo.png" alt="" />
-          </span>
+        <a class="brand" href="#top" aria-label="Gain home">
+          <span class="brand-mark"><img src="images/logo.png" alt="" /></span>
           <span>Gain</span>
+          <span class="brand-build">STORE // 1.4</span>
         </a>
-        <nav>
+        <nav aria-label="Primary navigation">
           <a href="#shop">Products</a>
-          <a href="#info">Details</a>
-          <a class="buy" href="#shop">Buy</a>
+          <a href="#info">Features</a>
+          <a class="nav-status" href="#info"><i></i> Systems online</a>
+          <a class="buy" href="#shop">View plans <span aria-hidden="true">→</span></a>
         </nav>
       </div>
     </header>
 
-    <main class="page">
-      <section class="catalog" id="shop">
-        <div class="plans" role="tablist" aria-label="Products">
-          <button class="plan is-on" type="button" data-plan="skins">
-            <span class="plan-kicker">Internal</span>
-            <strong>Skin Changer</strong>
-            <span class="plan-copy">Cosmetics, visuals, spoof</span>
-            <span class="plan-price">$5.00</span>
-          </button>
-          <button class="plan" type="button" data-plan="external">
-            <span class="badge">Sale</span>
-            <span class="plan-kicker">External</span>
-            <strong>Gain External</strong>
-            <span class="plan-copy">ESP, motion, overlay</span>
-            <span class="plan-price"><s>$5.00</s> $3.50</span>
-          </button>
-          <button class="plan plan-best" type="button" data-plan="bundle">
-            <span class="badge badge-best">Best value</span>
-            <span class="plan-kicker">Bundle</span>
-            <strong>Skin + External</strong>
-            <span class="plan-copy">Both licenses, one checkout</span>
-            <span class="plan-price"><s>$8.50</s> $7.50</span>
-          </button>
+    <main class="page" id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow"><span></span> Rivals toolkit</p>
+          <h1 id="hero-title">Precision tools.<br /><em>Clean control.</em></h1>
+          <p class="hero-copy">Choose the Gain build that fits your setup. Every license includes lifetime access and instant delivery.</p>
         </div>
-
-        <div class="product">
-          <div class="media">
-            <div class="compare media-pane is-on" id="pane-skins">
-              <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
-              <img class="compare-img compare-top" id="compare-top" src="images/before.jpg" alt="Before" draggable="false" />
-              <div class="compare-ui" id="compare-ui">
-                <div class="compare-line"></div>
-                <div class="compare-knob"></div>
-              </div>
-              <span class="compare-tag left">Before</span>
-              <span class="compare-tag right">After</span>
-            </div>
-
-            <div class="shot media-pane" id="pane-external" hidden>
-              <img src="images/external.png" alt="Gain External" />
-            </div>
-
-            <div class="bundle-shot media-pane" id="pane-bundle" hidden>
-              <figure class="bundle-skins">
-                <div class="compare" id="compare-bundle">
-                  <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
-                  <img class="compare-img compare-top" id="compare-top-bundle" src="images/before.jpg" alt="Before" draggable="false" />
-                  <div class="compare-ui" id="compare-ui-bundle">
-                    <div class="compare-line"></div>
-                    <div class="compare-knob"></div>
-                  </div>
-                  <span class="compare-tag left">Before</span>
-                  <span class="compare-tag right">After</span>
-                </div>
-                <figcaption>Skin Changer</figcaption>
-              </figure>
-              <figure class="bundle-ext">
-                <div class="bundle-ext-frame">
-                  <img src="images/external.png" alt="Gain External" />
-                </div>
-                <figcaption>External</figcaption>
-              </figure>
-            </div>
-          </div>
-
-          <aside class="buybox">
-            <p class="kicker" id="buy-kicker">Internal</p>
-            <h1 id="buy-title">Rivals Skin Changer</h1>
-            <p class="status"><span class="pulse"></span> Undetected</p>
-            <p class="sales" id="sales-line" hidden>
-              <span class="sales-num" id="sales-num">0</span> completed sales
-            </p>
-            <p class="lede" id="buy-blurb">In-game cosmetics, visuals, and spoof tools.</p>
-            <div class="price-row">
-              <p class="price" id="buy-price">$5.00</p>
-              <p class="price-was" id="buy-was" hidden></p>
-              <span class="save" id="buy-save" hidden></span>
-            </div>
-            <p class="sub" id="buy-sub">Insane performance · Instant updates · Lifetime access</p>
-            <ul class="includes" id="buy-includes"></ul>
-            <a class="cta" id="buy-cta" href="#">Pay with card — $5.00</a>
-            <a class="cta-secondary" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord</a>
-            <p class="hint">Instant keys after card payment. Discord is also available. Discount codes can be entered at checkout.</p>
-          </aside>
+        <div class="hero-telemetry" aria-label="Store status">
+          <div><span>Build</span><strong>1.4.1</strong></div>
+          <div><span>Delivery</span><strong>Instant</strong></div>
+          <div><span>License</span><strong>Lifetime</strong></div>
         </div>
       </section>
 
-      <section class="tabs" id="info">
-        <div class="tab-bar" role="tablist">
-          <button class="tab is-on" type="button" data-tab="features" role="tab">Features</button>
-          <button class="tab" type="button" data-tab="executors" role="tab">Executors</button>
-          <button class="tab" type="button" data-tab="setup" role="tab">Installation</button>
-          <span class="tab-ink" id="tab-ink"></span>
-        </div>
+      <section class="catalog" id="shop" aria-label="Gain products">
+        <div class="workspace-label"><span>01</span> Select your build <i></i></div>
+        <div class="product-workspace">
+          <div class="plans" role="tablist" aria-label="Products">
+            <button class="plan is-on" type="button" data-plan="skins" role="tab" aria-selected="true" aria-controls="pane-skins">
+              <span class="plan-index">01</span>
+              <span class="plan-kicker">Internal</span>
+              <strong>Skin Changer</strong>
+              <span class="plan-copy">Cosmetics &amp; visuals</span>
+              <span class="plan-price">$5.00 <b>Lifetime</b></span>
+              <span class="plan-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="plan" type="button" data-plan="external" role="tab" aria-selected="false" aria-controls="pane-external">
+              <span class="badge">Sale</span>
+              <span class="plan-index">02</span>
+              <span class="plan-kicker">External</span>
+              <strong>Gain External</strong>
+              <span class="plan-copy">Overlay &amp; movement</span>
+              <span class="plan-price"><s>$5.00</s> $3.50 <b>Lifetime</b></span>
+              <span class="plan-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="plan plan-best" type="button" data-plan="bundle" role="tab" aria-selected="false" aria-controls="pane-bundle">
+              <span class="badge badge-best">Best value</span>
+              <span class="plan-index">03</span>
+              <span class="plan-kicker">Bundle</span>
+              <strong>Skin + External</strong>
+              <span class="plan-copy">Two builds, one checkout</span>
+              <span class="plan-price"><s>$8.50</s> $7.50 <b>Lifetime</b></span>
+              <span class="plan-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
 
-        <div class="tab-panels">
-          <div class="panel is-on" id="panel-features" role="tabpanel">
-            <div class="feat-grid" id="feat-grid"></div>
-          </div>
-          <div class="panel" id="panel-executors" role="tabpanel">
-            <p class="exec-note" id="exec-intro">
-              Skin Changer is supported on these executors. External is a standalone overlay.
-            </p>
-            <div class="exec" id="exec-list"></div>
-            <p class="exec-note">
-              If yours is not listed and you need confirmation,
-              <a data-discord href="https://discord.gg/PBMHrgJ4Kd">join the Discord</a>.
-            </p>
-          </div>
-          <div class="panel" id="panel-setup" role="tabpanel">
-            <ol class="howto" id="howto"></ol>
-            <div class="code" id="loader-box">
-              <button type="button" id="copy-snippet">Copy</button>
-              <pre><code id="loader-snippet"></code></pre>
+          <div class="product-stage">
+            <div class="media" aria-live="polite">
+              <div class="compare media-pane is-on" id="pane-skins" role="slider" tabindex="0" aria-label="Skin Changer before and after comparison" aria-valuemin="1" aria-valuemax="99" aria-valuenow="50" aria-valuetext="Before and after split at 50 percent">
+                <img class="compare-img" src="images/after.jpg" alt="Skin Changer cosmetic preview" draggable="false" />
+                <img class="compare-img compare-top" id="compare-top" src="images/before.jpg" alt="Original cosmetic preview" draggable="false" />
+                <div class="compare-ui" id="compare-ui" aria-hidden="true"><div class="compare-line"></div><div class="compare-knob"></div></div>
+                <span class="compare-tag left">Original</span>
+                <span class="compare-tag right">Gain</span>
+                <span class="drag-hint" aria-hidden="true">Drag to compare <b>↔</b></span>
+              </div>
+
+              <div class="shot media-pane" id="pane-external" role="tabpanel" aria-label="Gain External preview" hidden>
+                <div class="preview-toolbar"><span class="live-dot"></span><span>External preview</span><small>LIVE INTERFACE</small></div>
+                <div class="external-display">
+                  <div class="external-image-wrap"><img src="images/external.png" alt="Gain External motion controls interface" /></div>
+                  <div class="preview-insights" aria-hidden="true">
+                    <div class="insight-card"><span>Responsive</span><strong>60 FPS</strong><i></i></div>
+                    <div class="insight-card"><span>Modules</span><strong>03 Tabs</strong><i></i></div>
+                    <div class="preview-swatch"><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+                <div class="preview-footer"><span>Gain External <b>1.4.1</b></span><span>Motion panel shown <i></i></span></div>
+              </div>
+
+              <div class="bundle-shot media-pane" id="pane-bundle" role="tabpanel" aria-label="Gain bundle previews" hidden>
+                <figure class="bundle-skins">
+                  <div class="compare" id="compare-bundle" role="slider" tabindex="0" aria-label="Bundle Skin Changer before and after comparison" aria-valuemin="1" aria-valuemax="99" aria-valuenow="50">
+                    <img class="compare-img" src="images/after.jpg" alt="Skin Changer cosmetic preview" draggable="false" />
+                    <img class="compare-img compare-top" id="compare-top-bundle" src="images/before.jpg" alt="Original cosmetic preview" draggable="false" />
+                    <div class="compare-ui" id="compare-ui-bundle" aria-hidden="true"><div class="compare-line"></div><div class="compare-knob"></div></div>
+                  </div>
+                  <figcaption><span>01</span> Skin Changer</figcaption>
+                </figure>
+                <figure class="bundle-ext">
+                  <div class="bundle-ext-frame"><img src="images/external.png" alt="Gain External interface" /></div>
+                  <figcaption><span>02</span> Gain External</figcaption>
+                </figure>
+              </div>
             </div>
+
+            <aside class="buybox" aria-live="polite">
+              <div class="buybox-topline"><p class="kicker" id="buy-kicker">Internal</p><span class="verified">● Ready</span></div>
+              <h2 id="buy-title">Rivals Skin Changer</h2>
+              <p class="lede" id="buy-blurb">In-game cosmetics, visuals, and spoof tools.</p>
+              <div class="price-row"><p class="price" id="buy-price">$5.00</p><p class="price-was" id="buy-was" hidden></p><span class="save" id="buy-save" hidden></span></div>
+              <p class="sub" id="buy-sub">Insane performance · Instant updates · Lifetime access</p>
+              <ul class="includes" id="buy-includes"></ul>
+              <a class="cta" id="buy-cta" href="#">Pay with card — $5.00 <span aria-hidden="true">→</span></a>
+              <a class="cta-secondary" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord <span aria-hidden="true">↗</span></a>
+              <p class="hint"><i></i> Instant key delivery after card payment. Discount codes are available at checkout.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Purchase benefits"><span><i>✦</i> Instant delivery</span><span><i>◌</i> Lifetime access</span><span><i>⌁</i> Continuous updates</span><span><i>?</i> Discord support</span></section>
+
+      <section class="tabs" id="info" aria-labelledby="details-heading">
+        <div class="section-heading"><span>02</span><h2 id="details-heading">Build details</h2><p>Everything included with your selected product.</p></div>
+        <div class="tab-bar" role="tablist" aria-label="Product details">
+          <button class="tab is-on" type="button" data-tab="features" role="tab" aria-selected="true" aria-controls="panel-features">Features</button>
+          <button class="tab" type="button" data-tab="executors" role="tab" aria-selected="false" aria-controls="panel-executors">Executors</button>
+          <button class="tab" type="button" data-tab="setup" role="tab" aria-selected="false" aria-controls="panel-setup">Installation</button>
+          <span class="tab-ink" id="tab-ink" aria-hidden="true"></span>
+        </div>
+        <div class="tab-panels">
+          <div class="panel is-on" id="panel-features" role="tabpanel"><div class="feat-grid" id="feat-grid"></div></div>
+          <div class="panel" id="panel-executors" role="tabpanel" aria-hidden="true">
+            <p class="exec-note" id="exec-intro">Skin Changer is supported on these executors. External is a standalone overlay.</p>
+            <div class="exec" id="exec-list"></div>
+            <p class="exec-note">If yours is not listed and you need confirmation, <a data-discord href="https://discord.gg/PBMHrgJ4Kd">join the Discord</a>.</p>
+          </div>
+          <div class="panel" id="panel-setup" role="tabpanel" aria-hidden="true">
+            <ol class="howto" id="howto"></ol>
+            <div class="code" id="loader-box"><button type="button" id="copy-snippet">Copy</button><pre><code id="loader-snippet"></code></pre></div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      <span>© <span id="year"></span> Gain</span>
-      <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord</a>
-    </footer>
-
-    <script src="site-config.js?v=19"></script>
-    <script src="main.js?v=19"></script>
+    <footer><span>© <span id="year"></span> Gain</span><span>Built for Rivals</span><a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord <span aria-hidden="true">↗</span></a></footer>
+    <script src="site-config.js?v=20"></script>
+    <script src="main.js?v=20"></script>
   </body>
 </html>
