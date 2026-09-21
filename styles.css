@@ -1957,9 +1957,6 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .esp-demo {
-    grid-template-columns: 1fr;
-  }
   .hero {
     grid-template-columns: 1fr;
     padding-top: 46px;
