@@ -9,7 +9,7 @@
     />
     <meta name="theme-color" content="#07080c" />
     <title>Gain — Roblox External, Skin Changer &amp; Dashboard</title>
-    <link rel="stylesheet" href="styles.css?v=32" />
+    <link rel="stylesheet" href="styles.css?v=33" />
     <link rel="icon" href="images/logo.png" type="image/png" />
     <link rel="preload" as="image" href="images/ext-settings.png" />
   </head>
@@ -88,30 +88,16 @@
         <section class="block reveal esp-demo-block">
           <header class="block-head">
             <p class="eyebrow">Try it</p>
-            <h2>Test ESP on the site.</h2>
+            <h2>Try ESP before you buy.</h2>
             <p class="block-lede">
-              Toggle box, name, health and distance — same options as Gain External. Drag the rig to
-              rotate it.
+              Real-time 3D preview — toggle box, name, health and distance, then drag to rotate the
+              model like in Gain External.
             </p>
           </header>
           <div class="esp-demo">
             <div class="esp-preview-wrap" id="esp-demo-stage">
-              <div class="esp-preview-scene" id="esp-scene">
-                <div class="esp-rig-wrap">
-                  <div class="esp-rig" id="esp-rig">
-                    <div class="esp-box" id="esp-box" data-style="corner"></div>
-                    <span class="esp-name" id="esp-name">Enemy</span>
-                    <div class="esp-health" id="esp-health"><span></span></div>
-                    <span class="esp-distance" id="esp-distance">12.0 studs</span>
-                    <div class="esp-character" aria-hidden="true">
-                      <div class="esp-part esp-head"></div>
-                      <div class="esp-part esp-torso"></div>
-                      <div class="esp-part esp-legs"></div>
-                    </div>
-                  </div>
-                </div>
-                <p class="esp-hint">Drag to rotate</p>
-              </div>
+              <canvas id="esp-canvas"></canvas>
+              <p class="esp-hint">Drag to rotate</p>
             </div>
             <aside class="esp-controls">
               <p class="esp-controls-title">ESP options</p>
@@ -443,8 +429,8 @@
       <p class="lightbox-cap" id="lightbox-cap"></p>
     </div>
 
-    <script src="site-config.js?v=32"></script>
-    <script src="main.js?v=32"></script>
-    <script src="esp-demo.js?v=32"></script>
+    <script src="site-config.js?v=33"></script>
+    <script src="main.js?v=33"></script>
+    <script type="module" src="esp-demo.js?v=33"></script>
   </body>
 </html>
