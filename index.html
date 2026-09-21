@@ -9,7 +9,7 @@
     />
     <meta name="theme-color" content="#07080c" />
     <title>Gain — Roblox External, Skin Changer &amp; Dashboard</title>
-    <link rel="stylesheet" href="styles.css?v=31" />
+    <link rel="stylesheet" href="styles.css?v=32" />
     <link rel="icon" href="images/logo.png" type="image/png" />
     <link rel="preload" as="image" href="images/ext-settings.png" />
   </head>
@@ -84,6 +84,48 @@
         </div>
 
         <div class="statstrip reveal" id="statstrip"></div>
+
+        <section class="block reveal esp-demo-block">
+          <header class="block-head">
+            <p class="eyebrow">Try it</p>
+            <h2>Test ESP on the site.</h2>
+            <p class="block-lede">
+              Toggle box, name, health and distance — same options as Gain External. Drag the rig to
+              rotate it.
+            </p>
+          </header>
+          <div class="esp-demo">
+            <div class="esp-preview-wrap" id="esp-demo-stage">
+              <div class="esp-preview-scene" id="esp-scene">
+                <div class="esp-rig-wrap">
+                  <div class="esp-rig" id="esp-rig">
+                    <div class="esp-box" id="esp-box" data-style="corner"></div>
+                    <span class="esp-name" id="esp-name">Enemy</span>
+                    <div class="esp-health" id="esp-health"><span></span></div>
+                    <span class="esp-distance" id="esp-distance">12.0 studs</span>
+                    <div class="esp-character" aria-hidden="true">
+                      <div class="esp-part esp-head"></div>
+                      <div class="esp-part esp-torso"></div>
+                      <div class="esp-part esp-legs"></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="esp-hint">Drag to rotate</p>
+              </div>
+            </div>
+            <aside class="esp-controls">
+              <p class="esp-controls-title">ESP options</p>
+              <div class="esp-toggles" id="esp-toggles"></div>
+              <div class="esp-style">
+                <p class="esp-style-label">Box style</p>
+                <div class="esp-seg" id="esp-box-style">
+                  <button type="button" data-box="corner" class="is-on">Cornered</button>
+                  <button type="button" data-box="full">Full</button>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
 
         <section class="block reveal">
           <header class="block-head">
@@ -401,7 +443,8 @@
       <p class="lightbox-cap" id="lightbox-cap"></p>
     </div>
 
-    <script src="site-config.js?v=31"></script>
-    <script src="main.js?v=31"></script>
+    <script src="site-config.js?v=32"></script>
+    <script src="main.js?v=32"></script>
+    <script src="esp-demo.js?v=32"></script>
   </body>
 </html>
