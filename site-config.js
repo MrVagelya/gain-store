@@ -37,9 +37,9 @@ window.GAIN_STORE = {
   },
 
   stats: [
-    { value: "360", suffix: " FPS", label: "Render cap" },
+    { value: "360", suffix: " FPS", label: "Insane performance" },
     { value: "3", suffix: " ms", label: "Typical input latency" },
-    { value: "147", suffix: "", label: "Services in Explorer" },
+    { value: "Undetected", suffix: "", label: "Status", text: true },
     { value: "100", suffix: "%", label: "External — no injection" },
   ],
 
@@ -158,24 +158,10 @@ window.GAIN_STORE = {
   ],
 
   testimonials: [
-    {
-      quote:
-        "The ESP preview alone sold me. I built a config in two minutes instead of loading twenty matches to test colors.",
-      name: "kaiden",
-      role: "Lifetime buyer",
-    },
-    {
-      quote:
-        "Roblox patched on a Friday night and Gain was working again before I finished dinner. That never happens.",
-      name: "vexil",
-      role: "External + Skins",
-    },
-    {
-      quote:
-        "Runs external so my frames never move. Smoothest external I've used and the player list is unreal.",
-      name: "m1rror",
-      role: "Lifetime buyer",
-    },
+    { rep: "+rep", quote: "external is actually smooth no cap", name: "jay" },
+    { rep: "+rep", quote: "roblox patched friday still worked same night", name: "dre" },
+    { rep: "+rep", quote: "player list + esp preview go hard", name: "neo" },
+    { rep: "+rep", quote: "worth it just for the lua vm tbh", name: "zeph" },
   ],
 
   faq: [

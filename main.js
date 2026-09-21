@@ -136,12 +136,14 @@
   const statstrip = $("statstrip");
   if (statstrip) {
     statstrip.innerHTML = (cfg.stats || [])
-      .map(
-        (s) =>
-          `<div class="stat"><strong data-count="${esc(s.value)}" data-suffix="${esc(s.suffix || "")}">0${esc(
-            s.suffix || ""
-          )}</strong><span>${esc(s.label)}</span></div>`
-      )
+      .map((s) => {
+        if (s.text) {
+          return `<div class="stat"><strong class="stat-text">${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`;
+        }
+        return `<div class="stat"><strong data-count="${esc(s.value)}" data-suffix="${esc(s.suffix || "")}">0${esc(
+          s.suffix || ""
+        )}</strong><span>${esc(s.label)}</span></div>`;
+      })
       .join("");
   }
 
@@ -172,9 +174,9 @@
     quoteGrid.innerHTML = (cfg.testimonials || [])
       .map(
         (t) => `<figure class="quote">
-          <span class="stars">★★★★★</span>
+          <span class="rep-tag">${esc(t.rep || "+rep")}</span>
           <blockquote>${esc(t.quote)}</blockquote>
-          <figcaption><b>${esc(t.name)}</b><span>${esc(t.role)}</span></figcaption>
+          <figcaption>— ${esc(t.name)}</figcaption>
         </figure>`
       )
       .join("");

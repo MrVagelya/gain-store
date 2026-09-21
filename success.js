@@ -1,5 +1,6 @@
 (function () {
   const cfg = window.GAIN_STORE || {};
+  const plans = cfg.plans || {};
   const discord = document.getElementById("discord-link");
   if (discord && cfg.discordUrl) discord.href = cfg.discordUrl;
 
@@ -11,6 +12,71 @@
   const fulfillUrl = cfg.stripeFulfillUrl || "";
   const emailNotice = document.getElementById("email-notice");
 
+  const gainLoader = plans.skins?.loaderUrl || "";
+  const skinTitle = plans.skins?.title || "Rivals Skin Changer";
+  const externalTitle = plans.external?.title || "Gain External";
+
+  const hasScriptSnippet = (item) => {
+    const s = String(item?.snippet || "");
+    return s.includes("loadstring") || s.includes("script_key") || s.includes("/loader/");
+  };
+
+  const guessType = (item) => {
+    const name = String(item?.name || "").toLowerCase();
+    if (name.includes("skin")) return "skins";
+    if (name.includes("external")) return "external";
+    if (hasScriptSnippet(item)) return "skins";
+    return "external";
+  };
+
+  const buildSnippet = (type, key) => {
+    if (type !== "skins" || !gainLoader || !key) return "";
+    return `script_key="${key}";\nloadstring(game:HttpGet("${gainLoader}"))()`;
+  };
+
+  const normalizeItems = (rawItems) => {
+    const items = (rawItems || []).map((item) => ({
+      name: String(item.name || "License"),
+      key: String(item.key || ""),
+      snippet: String(item.snippet || ""),
+      type: guessType(item),
+    }));
+
+    if (items.length === 2) {
+      const skinsIdx = items.findIndex((i) => i.type === "skins");
+      const extIdx = items.findIndex((i) => i.type === "external");
+      if (skinsIdx >= 0 && extIdx >= 0) {
+        const skins = items[skinsIdx];
+        const ext = items[extIdx];
+        const skinsHasScript = hasScriptSnippet(skins);
+        const extHasScript = hasScriptSnippet(ext);
+        if (!skinsHasScript && extHasScript) {
+          const tmp = skins.key;
+          skins.key = ext.key;
+          ext.key = tmp;
+        }
+      }
+    }
+
+    return items.map((item) => {
+      const type = item.type;
+      const name = type === "skins" ? skinTitle : externalTitle;
+      const snippet = type === "skins" ? buildSnippet("skins", item.key) : "";
+      return { name, key: item.key, snippet, type };
+    });
+  };
+
+  const normalizeSingle = (data) => {
+    const name = String(data.productName || data.name || "");
+    let type = guessType({ name, snippet: data.loaderSnippet || "" });
+    if (!name) type = data.download ? "external" : hasScriptSnippet({ snippet: data.loaderSnippet }) ? "skins" : "external";
+
+    const key = String(data.key || "");
+    const displayName = type === "skins" ? skinTitle : externalTitle;
+    const snippet = type === "skins" ? buildSnippet("skins", key) : "";
+    return [{ name: displayName, key, snippet, type }];
+  };
+
   if (!sessionId || !fulfillUrl) {
     if (status) status.textContent = "Missing checkout session. Contact support on Discord.";
     return;
@@ -18,7 +84,6 @@
 
   let tries = 0;
   const maxTries = 40;
-
   let lastItems = [];
 
   const renderItems = (items) => {
@@ -79,12 +144,13 @@
         }
         const items =
           data.items && data.items.length
-            ? data.items
-            : [{ name: "License", key: data.key, snippet: data.loaderSnippet || "" }];
+            ? normalizeItems(data.items)
+            : normalizeSingle(data);
         renderItems(items);
         if (keyBox) keyBox.hidden = false;
         const downloadBtn = document.getElementById("download-btn");
-        if (downloadBtn && data.download && cfg.stripeDownloadUrl) {
+        const hasExternal = items.some((i) => i.type === "external");
+        if (downloadBtn && hasExternal && cfg.stripeDownloadUrl) {
           downloadBtn.hidden = false;
           downloadBtn.onclick = async (e) => {
             e.preventDefault();
