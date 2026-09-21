@@ -21,12 +21,12 @@ window.GAIN_STORE = {
   ],
 
   hero: {
-    rating: { score: "4.9/5", count: "1,200+ members", stars: 5 },
+    rating: { score: "4.9/5", count: "400+ Discord members", stars: 5 },
     titleLead: "The",
     titleAccent: "Best Roblox",
     titleTail: "External on The Market.",
     copy:
-      "Gain goes far beyond the usual external. A full overlay workspace with ESP, silent aim, motion control, a live 3D preview, a built-in Lua VM and a real instance explorer — all in one focused Windows app that stays smooth while you play.",
+      "Gain goes far beyond the usual external. A full workspace with ESP, silent aim, motion control, a live 3D preview, a built-in Lua VM and a real instance explorer — all in one focused Windows app that stays smooth while you play.",
     ctaPrimary: "Get Gain External",
     ctaSecondary: "Explore the interface",
     bullets: [
@@ -37,7 +37,7 @@ window.GAIN_STORE = {
   },
 
   stats: [
-    { value: "360", suffix: " FPS", label: "Overlay render cap" },
+    { value: "360", suffix: " FPS", label: "Render cap" },
     { value: "3", suffix: " ms", label: "Typical input latency" },
     { value: "147", suffix: "", label: "Services in Explorer" },
     { value: "100", suffix: "%", label: "External — no injection" },
@@ -53,7 +53,7 @@ window.GAIN_STORE = {
     {
       title: "Genuinely smooth",
       body:
-        "The overlay renders on its own pipeline at up to 360 FPS with a 3 ms input path. Menus animate, ESP tracks cleanly and your game keeps every frame it had before you loaded in.",
+        "Gain renders on its own pipeline at up to 360 FPS with a 3 ms input path. Menus animate, ESP tracks cleanly and your game keeps every frame it had before you loaded in.",
       icon: "bolt",
     },
     {
@@ -119,7 +119,7 @@ window.GAIN_STORE = {
       title: "A scripting environment built in",
       image: "images/ext-luavm.png",
       body:
-        "Write, save and run Lua straight from the overlay with a proper editor, a script tree and a live console. Connect the MCP bridge to Cursor or OpenCode and let your editor drive the VM directly.",
+        "Write, save and run Lua straight from Gain with a proper editor, a script tree and a live console. Connect the MCP bridge to Cursor or OpenCode and let your editor drive the VM directly.",
       points: [
         "Script tree with save, clear and run/stop controls",
         "Live console output with copy support",
@@ -152,7 +152,7 @@ window.GAIN_STORE = {
         "Independent draggable and resizable panels",
         "Status bar with FPS, ping, server IP and account",
         "Layouts persist between sessions",
-        "Menu key, unload and overlay FPS always reachable",
+        "Menu key, unload and Overlay FPS always reachable",
       ],
     },
   ],
@@ -172,7 +172,7 @@ window.GAIN_STORE = {
     },
     {
       quote:
-        "Runs external so my frames never move. Smoothest overlay I've used and the player list is unreal.",
+        "Runs external so my frames never move. Smoothest external I've used and the player list is unreal.",
       name: "m1rror",
       role: "Lifetime buyer",
     },
@@ -197,7 +197,7 @@ window.GAIN_STORE = {
     },
     {
       q: "What do I need to run it?",
-      a: "Windows 10 or 11 with a 64-bit CPU. The overlay is GPU accelerated but light — it runs comfortably on laptop integrated graphics.",
+      a: "Windows 10 or 11 with a 64-bit CPU. Gain is GPU accelerated but light — it runs comfortably on laptop integrated graphics.",
     },
     {
       q: "Can I use one key on two PCs?",
@@ -286,7 +286,7 @@ window.GAIN_STORE = {
       kicker: "External",
       name: "Gain External",
       title: "Gain External",
-      blurb: "Standalone overlay: ESP, aim, motion, and world tools.",
+      blurb: "Standalone external: ESP, aim, motion, and world tools.",
       long:
         "A complete external workspace. Aimbot, silent aim, trigger and rage, readable ESP, motion control, a live 3D preview, a built-in Lua VM, a full player list and a real instance explorer — rendered at up to 360 FPS outside the game.",
       price: "$3.50",
@@ -362,7 +362,7 @@ window.GAIN_STORE = {
       title: "Gain Bundle",
       blurb: "Skin Changer and External together. Two keys, one checkout.",
       long:
-        "Everything Gain makes, in one payment. Two independent lifetime licenses — the Rivals Skin Changer for cosmetics and visuals, and the External overlay for combat, ESP and tooling.",
+        "Everything Gain makes, in one payment. Two independent lifetime licenses — the Rivals Skin Changer for cosmetics and visuals, and the External for combat, ESP and tooling.",
       price: "$7.50",
       priceWas: "$8.50",
       save: "Save $1.00",
@@ -389,7 +389,7 @@ window.GAIN_STORE = {
       features: {
         Included: [
           "Rivals Skin Changer",
-          "Gain External overlay",
+          "Gain External",
           "Two separate licenses",
           "Lifetime on both",
         ],
