@@ -3,62 +3,231 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Gain — Rivals Skin Changer and External. Lifetime licenses from $3.50." />
-    <title>Gain — Skin Changer &amp; External</title>
-    <link rel="stylesheet" href="styles.css?v=19" />
+    <meta
+      name="description"
+      content="Gain External — the best Roblox external on the market. ESP, silent aim, motion, live ESP preview, built-in Lua VM and instance explorer. Lifetime licenses from $3.50."
+    />
+    <meta name="theme-color" content="#07080c" />
+    <title>Gain — Roblox External, Skin Changer &amp; Dashboard</title>
+    <link rel="stylesheet" href="styles.css?v=31" />
     <link rel="icon" href="images/logo.png" type="image/png" />
+    <link rel="preload" as="image" href="images/ext-settings.png" />
   </head>
   <body>
     <div class="fx-grid" aria-hidden="true"></div>
-    <div class="fx-glow" aria-hidden="true"></div>
+    <div class="fx-aurora" aria-hidden="true"></div>
+    <div class="fx-orb fx-orb-a" aria-hidden="true"></div>
+    <div class="fx-orb fx-orb-b" aria-hidden="true"></div>
+    <div class="fx-orb fx-orb-c" aria-hidden="true"></div>
     <div class="fx-vignette" aria-hidden="true"></div>
-    <canvas id="snow" aria-hidden="true"></canvas>
+    <div class="fx-noise" aria-hidden="true"></div>
     <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
-    <header>
-      <div class="bar">
-        <a class="brand" href="#">
-          <span class="brand-mark">
-            <img src="images/logo.png" alt="" />
-          </span>
-          <span>Gain</span>
-        </a>
-        <nav>
-          <a href="#shop">Products</a>
-          <a href="#info">Details</a>
-          <a class="buy" href="#shop">Buy</a>
-        </nav>
-      </div>
-    </header>
+    <a class="skip" href="#main">Skip to content</a>
 
-    <main class="page">
-      <section class="catalog" id="shop">
-        <div class="plans" role="tablist" aria-label="Products">
-          <button class="plan is-on" type="button" data-plan="skins">
-            <span class="plan-kicker">Internal</span>
-            <strong>Skin Changer</strong>
-            <span class="plan-copy">Cosmetics, visuals, spoof</span>
-            <span class="plan-price">$5.00</span>
-          </button>
-          <button class="plan" type="button" data-plan="external">
-            <span class="badge">Sale</span>
-            <span class="plan-kicker">External</span>
-            <strong>Gain External</strong>
-            <span class="plan-copy">ESP, motion, overlay</span>
-            <span class="plan-price"><s>$5.00</s> $3.50</span>
-          </button>
-          <button class="plan plan-best" type="button" data-plan="bundle">
-            <span class="badge badge-best">Best value</span>
-            <span class="plan-kicker">Bundle</span>
-            <strong>Skin + External</strong>
-            <span class="plan-copy">Both licenses, one checkout</span>
-            <span class="plan-price"><s>$8.50</s> $7.50</span>
+    <header id="site-header">
+      <div class="bar">
+        <a class="brand" href="#/home">
+          <span class="brand-mark"><img src="images/logo.png" alt="" /></span>
+          <span class="brand-name">Gain</span>
+          <span class="brand-ver" id="brand-ver">v1.5.0</span>
+        </a>
+
+        <nav class="mainnav" id="mainnav" aria-label="Main">
+          <span class="nav-ink" id="nav-ink" aria-hidden="true"></span>
+        </nav>
+
+        <div class="bar-actions">
+          <a class="ghost-btn" data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord</a>
+          <a class="solid-btn" href="#/pricing" data-go="pricing">Get Gain</a>
+          <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
           </button>
         </div>
+      </div>
+      <div class="nav-progress" id="nav-progress" aria-hidden="true"></div>
+    </header>
+
+    <main class="page" id="main">
+      <!-- ============================ HOME ============================ -->
+      <section class="view is-on" id="view-home" data-view="home">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="rating" id="hero-rating"></div>
+            <h1 class="hero-title" id="hero-title"></h1>
+            <p class="hero-lede" id="hero-copy"></p>
+            <div class="hero-cta">
+              <a class="solid-btn big" href="#/pricing" data-go="pricing" id="hero-cta-1">Get Gain External</a>
+              <a class="ghost-btn big" href="#/tour" data-go="tour" id="hero-cta-2">Explore the interface</a>
+            </div>
+            <ul class="hero-bullets" id="hero-bullets"></ul>
+            <p class="sales" id="sales-line" hidden>
+              <span class="pulse"></span>
+              <span class="sales-num" id="sales-num">0</span> completed sales and counting
+            </p>
+          </div>
+
+          <div class="hero-visual" id="hero-visual">
+            <div class="hero-glass"></div>
+            <figure class="shot shot-main" data-tilt>
+              <img src="images/ext-settings.png" alt="Gain External settings dashboard" loading="eager" />
+            </figure>
+            <figure class="shot shot-float shot-preview" data-tilt>
+              <img src="images/ext-esp-preview.png" alt="Live ESP preview window" loading="lazy" />
+            </figure>
+            <figure class="shot shot-float shot-bar">
+              <img src="images/ext-toolbar.png" alt="Gain External window toolbar" loading="lazy" />
+            </figure>
+            <span class="chip chip-fps">273 FPS</span>
+            <span class="chip chip-ms">3 MS</span>
+          </div>
+        </div>
+
+        <div class="statstrip reveal" id="statstrip"></div>
+
+        <section class="block reveal">
+          <header class="block-head">
+            <p class="eyebrow">Why Gain</p>
+            <h2>Built to be the one you keep using.</h2>
+            <p class="block-lede">
+              Most externals are a menu bolted onto a memory reader. Gain is a full application:
+              stable, fast, thoroughly documented and updated by people who actually play the game.
+            </p>
+          </header>
+          <div class="trust-grid" id="trust-grid"></div>
+        </section>
+
+        <section class="block reveal">
+          <header class="block-head">
+            <p class="eyebrow">A real workspace</p>
+            <h2>Six tools, one external.</h2>
+            <p class="block-lede">
+              Dashboard, ESP, live 3D preview, Lua VM, player list and instance explorer — every
+              window draggable, resizable and remembered between sessions.
+            </p>
+          </header>
+          <div class="gallery" id="home-gallery"></div>
+          <div class="block-foot">
+            <a class="solid-btn" href="#/tour" data-go="tour">Take the full tour</a>
+            <a class="ghost-btn" href="#/features" data-go="features">See every feature</a>
+          </div>
+        </section>
+
+        <section class="block reveal">
+          <header class="block-head">
+            <p class="eyebrow">Members</p>
+            <h2>People do not churn off Gain.</h2>
+          </header>
+          <div class="quote-grid" id="quote-grid"></div>
+        </section>
+
+        <section class="cta-band reveal">
+          <div>
+            <h2>Lifetime access starts at $3.50.</h2>
+            <p>One payment. Every future update. Keys delivered the second your card clears.</p>
+          </div>
+          <div class="cta-band-actions">
+            <a class="solid-btn big" href="#/pricing" data-go="pricing">View pricing</a>
+            <a class="ghost-btn big" data-discord href="https://discord.gg/PBMHrgJ4Kd">Join Discord</a>
+          </div>
+        </section>
+      </section>
+
+      <!-- ============================ TOUR ============================ -->
+      <section class="view" id="view-tour" data-view="tour" hidden>
+        <header class="view-head">
+          <p class="eyebrow">Product tour</p>
+          <h1>Every panel, explained.</h1>
+          <p class="view-lede">
+            These are real screenshots of the current build. Pick a panel on the left to see what it
+            does and why it matters in a match.
+          </p>
+        </header>
+
+        <div class="tour">
+          <aside class="tour-rail" id="tour-rail" role="tablist" aria-label="Tour sections"></aside>
+          <div class="tour-stage">
+            <figure class="tour-shot">
+              <div class="tour-shot-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="tour-shot-name" id="tour-shot-name">Gain External</span>
+                <button class="zoom-btn" type="button" id="tour-zoom">Expand</button>
+              </div>
+              <img id="tour-img" src="images/ext-settings.png" alt="" />
+            </figure>
+            <div class="tour-info">
+              <h2 id="tour-title"></h2>
+              <p id="tour-body"></p>
+              <ul class="ticks" id="tour-points"></ul>
+              <div class="tour-nav">
+                <button class="ghost-btn" type="button" id="tour-prev">Previous</button>
+                <button class="solid-btn" type="button" id="tour-next">Next panel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="block reveal">
+          <header class="block-head">
+            <p class="eyebrow">Gallery</p>
+            <h2>All windows, side by side.</h2>
+          </header>
+          <div class="gallery" id="tour-gallery"></div>
+        </section>
+      </section>
+
+      <!-- ========================== FEATURES ========================== -->
+      <section class="view" id="view-features" data-view="features" hidden>
+        <header class="view-head">
+          <p class="eyebrow">Features</p>
+          <h1>The complete list.</h1>
+          <p class="view-lede">
+            Switch product to see exactly what each license unlocks. Nothing here is a roadmap item —
+            it is all in the current build.
+          </p>
+        </header>
+
+        <div class="segment" id="feature-segment" role="tablist" aria-label="Product"></div>
+
+        <div class="feat-intro">
+          <h2 id="feat-title"></h2>
+          <p id="feat-long"></p>
+        </div>
+
+        <div class="feat-grid" id="feat-grid"></div>
+
+        <section class="block reveal" id="exec-block">
+          <header class="block-head">
+            <p class="eyebrow">Compatibility</p>
+            <h2>Supported executors</h2>
+            <p class="block-lede" id="exec-intro">
+              Skin Changer runs on these executors. Gain External needs none — it is a standalone app.
+            </p>
+          </header>
+          <div class="exec" id="exec-list"></div>
+          <p class="note">
+            Not listed and want confirmation before buying?
+            <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Ask in Discord</a> — we answer fast.
+          </p>
+        </section>
+      </section>
+
+      <!-- =========================== PRICING =========================== -->
+      <section class="view" id="view-pricing" data-view="pricing" hidden>
+        <header class="view-head">
+          <p class="eyebrow">Pricing</p>
+          <h1>Lifetime licenses, honest prices.</h1>
+          <p class="view-lede">
+            No subscriptions, no tiers that hold features back, no renewal emails. Pay once and keep
+            every update for that product forever.
+          </p>
+        </header>
+
+        <div class="plans" id="plans" role="tablist" aria-label="Products"></div>
 
         <div class="product">
           <div class="media">
-            <div class="compare media-pane is-on" id="pane-skins">
+            <div class="compare media-pane" id="pane-skins" hidden>
               <img class="compare-img" src="images/after.jpg" alt="After" draggable="false" />
               <img class="compare-img compare-top" id="compare-top" src="images/before.jpg" alt="Before" draggable="false" />
               <div class="compare-ui" id="compare-ui">
@@ -69,8 +238,8 @@
               <span class="compare-tag right">After</span>
             </div>
 
-            <div class="shot media-pane" id="pane-external" hidden>
-              <img src="images/external.png" alt="Gain External" />
+            <div class="shot media-pane is-on" id="pane-external">
+              <img src="images/ext-workspace.png" alt="Gain External in game" />
             </div>
 
             <div class="bundle-shot media-pane" id="pane-bundle" hidden>
@@ -89,7 +258,7 @@
               </figure>
               <figure class="bundle-ext">
                 <div class="bundle-ext-frame">
-                  <img src="images/external.png" alt="Gain External" />
+                  <img src="images/ext-settings.png" alt="Gain External" />
                 </div>
                 <figcaption>External</figcaption>
               </figure>
@@ -97,66 +266,142 @@
           </div>
 
           <aside class="buybox">
-            <p class="kicker" id="buy-kicker">Internal</p>
-            <h1 id="buy-title">Rivals Skin Changer</h1>
+            <p class="kicker" id="buy-kicker"></p>
+            <h2 id="buy-title"></h2>
             <p class="status"><span class="pulse"></span> Undetected</p>
-            <p class="sales" id="sales-line" hidden>
-              <span class="sales-num" id="sales-num">0</span> completed sales
-            </p>
-            <p class="lede" id="buy-blurb">In-game cosmetics, visuals, and spoof tools.</p>
+            <p class="lede" id="buy-blurb"></p>
             <div class="price-row">
-              <p class="price" id="buy-price">$5.00</p>
+              <p class="price" id="buy-price"></p>
               <p class="price-was" id="buy-was" hidden></p>
               <span class="save" id="buy-save" hidden></span>
             </div>
-            <p class="sub" id="buy-sub">Insane performance · Instant updates · Lifetime access</p>
+            <p class="sub" id="buy-sub"></p>
             <ul class="includes" id="buy-includes"></ul>
-            <a class="cta" id="buy-cta" href="#">Pay with card — $5.00</a>
+            <p class="delivery" id="buy-delivery"></p>
+            <a class="cta" id="buy-cta" href="#">Pay with card</a>
             <a class="cta-secondary" data-discord href="https://discord.gg/PBMHrgJ4Kd">Purchase on Discord</a>
-            <p class="hint">Instant keys after card payment. Discord is also available. Discount codes can be entered at checkout.</p>
+            <p class="hint">
+              Instant keys after card payment. Discount codes can be entered at checkout. Discord
+              purchase is available for crypto and manual methods.
+            </p>
           </aside>
+        </div>
+
+        <section class="block reveal">
+          <header class="block-head">
+            <p class="eyebrow">Compare</p>
+            <h2>What each license unlocks</h2>
+          </header>
+          <div class="table-wrap">
+            <table class="compare-table" id="compare-table"></table>
+          </div>
+        </section>
+
+        <section class="block reveal">
+          <div class="assure" id="assure"></div>
+        </section>
+      </section>
+
+      <!-- ============================ SETUP ============================ -->
+      <section class="view" id="view-setup" data-view="setup" hidden>
+        <header class="view-head">
+          <p class="eyebrow">Setup</p>
+          <h1>From payment to playing in three steps.</h1>
+          <p class="view-lede">
+            External is an app. Skin Changer is a loader. Pick your product below and follow the exact
+            steps — nothing else is required.
+          </p>
+        </header>
+
+        <div class="segment" id="setup-segment" role="tablist" aria-label="Product"></div>
+
+        <ol class="howto" id="howto"></ol>
+
+        <div class="code" id="loader-box">
+          <button type="button" id="copy-snippet">Copy</button>
+          <pre><code id="loader-snippet"></code></pre>
+        </div>
+
+        <div class="req-grid">
+          <article class="card">
+            <h3>Requirements</h3>
+            <ul class="ticks">
+              <li>Windows 10 or 11, 64-bit</li>
+              <li>Roblox installed and updated</li>
+              <li>Any GPU — integrated is fine</li>
+              <li>Skin Changer only: a supported executor</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Good to know</h3>
+            <ul class="ticks">
+              <li>Press <b>Insert</b> to open the External menu</li>
+              <li>Licenses bind to one machine — resets are free</li>
+              <li>Configs save to named slots you can share</li>
+              <li>Streamproof hides Gain from captures</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Stuck?</h3>
+            <p class="card-copy">
+              Open a ticket in Discord with your receipt email. Support is staffed daily and most
+              setup issues are solved in a couple of messages.
+            </p>
+            <a class="ghost-btn" data-discord href="https://discord.gg/PBMHrgJ4Kd">Open support</a>
+          </article>
         </div>
       </section>
 
-      <section class="tabs" id="info">
-        <div class="tab-bar" role="tablist">
-          <button class="tab is-on" type="button" data-tab="features" role="tab">Features</button>
-          <button class="tab" type="button" data-tab="executors" role="tab">Executors</button>
-          <button class="tab" type="button" data-tab="setup" role="tab">Installation</button>
-          <span class="tab-ink" id="tab-ink"></span>
-        </div>
+      <!-- ============================= FAQ ============================= -->
+      <section class="view" id="view-faq" data-view="faq" hidden>
+        <header class="view-head">
+          <p class="eyebrow">FAQ</p>
+          <h1>Answers before you buy.</h1>
+          <p class="view-lede">
+            Everything people ask in Discord, written down. If your question is not here, ask — we
+            will add it.
+          </p>
+        </header>
 
-        <div class="tab-panels">
-          <div class="panel is-on" id="panel-features" role="tabpanel">
-            <div class="feat-grid" id="feat-grid"></div>
+        <div class="faq" id="faq-list"></div>
+
+        <section class="cta-band reveal">
+          <div>
+            <h2>Still deciding?</h2>
+            <p>Join the Discord, read the patch notes and ask current members what they think.</p>
           </div>
-          <div class="panel" id="panel-executors" role="tabpanel">
-            <p class="exec-note" id="exec-intro">
-              Skin Changer is supported on these executors. External is a standalone overlay.
-            </p>
-            <div class="exec" id="exec-list"></div>
-            <p class="exec-note">
-              If yours is not listed and you need confirmation,
-              <a data-discord href="https://discord.gg/PBMHrgJ4Kd">join the Discord</a>.
-            </p>
+          <div class="cta-band-actions">
+            <a class="solid-btn big" data-discord href="https://discord.gg/PBMHrgJ4Kd">Join Discord</a>
+            <a class="ghost-btn big" href="#/pricing" data-go="pricing">View pricing</a>
           </div>
-          <div class="panel" id="panel-setup" role="tabpanel">
-            <ol class="howto" id="howto"></ol>
-            <div class="code" id="loader-box">
-              <button type="button" id="copy-snippet">Copy</button>
-              <pre><code id="loader-snippet"></code></pre>
-            </div>
-          </div>
-        </div>
+        </section>
       </section>
     </main>
 
     <footer>
-      <span>© <span id="year"></span> Gain</span>
-      <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord</a>
+      <div class="foot-top">
+        <div class="foot-brand">
+          <span class="brand-mark"><img src="images/logo.png" alt="" /></span>
+          <div>
+            <strong>Gain</strong>
+            <p>The best Roblox external on the market.</p>
+          </div>
+        </div>
+        <nav class="foot-links" id="foot-links" aria-label="Footer"></nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year"></span> Gain. All rights reserved.</span>
+        <a data-discord href="https://discord.gg/PBMHrgJ4Kd">Discord support</a>
+      </div>
     </footer>
 
-    <script src="site-config.js?v=19"></script>
-    <script src="main.js?v=19"></script>
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" type="button" id="lightbox-close" aria-label="Close">×</button>
+      <img id="lightbox-img" src="" alt="" />
+      <p class="lightbox-cap" id="lightbox-cap"></p>
+    </div>
+
+    <script src="site-config.js?v=31"></script>
+    <script src="main.js?v=31"></script>
   </body>
 </html>
