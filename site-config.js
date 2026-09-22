@@ -11,6 +11,13 @@ window.GAIN_STORE = {
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/stats/sales",
   defaultPlan: "external",
 
+  sale: {
+    active: true,
+    headline: "Last chance",
+    copy: "50% off Skin Changer — bundle now $5.00. Prices reset when the timer hits zero.",
+    endsAt: "2026-09-24T20:00:00.000Z",
+  },
+
   nav: [
     { id: "home", label: "Home" },
     { id: "tour", label: "Tour" },
@@ -208,10 +215,11 @@ window.GAIN_STORE = {
       blurb: "In-game cosmetics, visuals, and spoof tools.",
       long:
         "Unlock every weapon skin, wrap and charm with a live preview, then push the game's visuals far past its own settings. Spoof your level, rank, ELO, name and device, and keep it all in named config profiles.",
-      price: "$5.00",
-      priceWas: "",
-      save: "",
-      cta: "Pay with card — $5.00",
+      price: "$2.50",
+      priceWas: "$5.00",
+      save: "50% off",
+      badge: "Last chance",
+      cta: "Pay with card — $2.50",
       stripeUrl: "https://buy.stripe.com/dRm6oGeOv8lW76k106dQQ00",
       loaderUrl:
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
@@ -349,10 +357,11 @@ window.GAIN_STORE = {
       blurb: "Skin Changer and External together. Two keys, one checkout.",
       long:
         "Everything Gain makes, in one payment. Two independent lifetime licenses — the Rivals Skin Changer for cosmetics and visuals, and the External for combat, ESP and tooling.",
-      price: "$7.50",
-      priceWas: "$8.50",
-      save: "Save $1.00",
-      cta: "Pay with card — $7.50",
+      price: "$5.00",
+      priceWas: "$7.50",
+      save: "Save $2.50",
+      badge: "Last chance",
+      cta: "Pay with card — $5.00",
       stripeUrl: "https://buy.stripe.com/28EbJ049R7hSduI5gmdQQ01",
       loaderUrl:
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
@@ -379,7 +388,7 @@ window.GAIN_STORE = {
           "Two separate licenses",
           "Lifetime on both",
         ],
-        Value: ["$5.00 + $3.50 separately", "Bundle $7.50", "Save $1.00"],
+        Value: ["$2.50 + $3.50 separately", "Bundle $5.00", "Save $1.00"],
         Support: [
           "Priority Discord help",
           "Both products patched together",
