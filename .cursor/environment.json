@@ -1,0 +1,11 @@
+{
+  "name": "Gain store (static site)",
+  "user": "ubuntu",
+  "ports": [8000],
+  "terminals": [
+    {
+      "name": "web",
+      "command": "python3 -m http.server 8000 --bind 0.0.0.0"
+    }
+  ]
+}
