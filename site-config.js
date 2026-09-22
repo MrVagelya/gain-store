@@ -220,7 +220,7 @@ window.GAIN_STORE = {
       save: "50% off",
       badge: "Last chance",
       cta: "Pay with card — $2.50",
-      stripeUrl: "https://buy.stripe.com/dRm6oGeOv8lW76k106dQQ00",
+      stripeUrl: "https://buy.stripe.com/bJe9ASdKr6dOduIaAGdQQ03",
       loaderUrl:
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
       delivery: "Roblox loader script + license key",
@@ -362,7 +362,7 @@ window.GAIN_STORE = {
       save: "Save $2.50",
       badge: "Last chance",
       cta: "Pay with card — $5.00",
-      stripeUrl: "https://buy.stripe.com/28EbJ049R7hSduI5gmdQQ01",
+      stripeUrl: "https://buy.stripe.com/5kQcN4dKr6dO1M024adQQ04",
       loaderUrl:
         "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
       delivery: "Loader + Windows app, two keys",
