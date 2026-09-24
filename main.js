@@ -316,22 +316,15 @@
     plansEl.innerHTML = planIds
       .map((id) => {
         const p = plans[id];
-        const badgeItems = [
-          p.badge ? `<span class="badge badge-urgent">${esc(p.badge)}</span>` : "",
-          p.save ? `<span class="badge">${esc(p.save)}</span>` : "",
-        ].filter(Boolean);
-        const badges = badgeItems.length
-          ? `<div class="plan-badges">${badgeItems.join("")}</div>`
-          : "";
+        const badge = p.save ? `<span class="badge">${esc(p.save)}</span>` : "";
         return `<button class="plan${id === "bundle" ? " plan-best" : ""}" type="button" role="tab" data-plan="${esc(
           id
         )}">
-          ${badges}
+          ${badge}
           <span class="plan-kicker">${esc(p.kicker)}</span>
           <strong>${esc(p.name)}</strong>
           <span class="plan-copy">${esc(p.blurb)}</span>
           <span class="plan-price">${p.priceWas ? "<s>" + esc(p.priceWas) + "</s> " : ""}${esc(p.price)}</span>
-          <span class="plan-timer" data-plan-timer hidden>Ends in <b>00:00:00</b></span>
           <ul class="plan-list">${(p.highlights || []).map((h) => `<li>${esc(h)}</li>`).join("")}</ul>
           <span class="plan-pick">Select</span>
         </button>`;
@@ -372,11 +365,8 @@
       .join("");
   }
 
-  const snippetEl = $("loader-snippet");
-  const snippetBox = $("loader-box");
   const howto = $("howto");
   const featGrid = $("feat-grid");
-  let currentSnippet = "";
   let currentPlan = cfg.defaultPlan && plans[cfg.defaultPlan] ? cfg.defaultPlan : planIds[0];
 
   const setPlan = (id) => {
@@ -454,15 +444,6 @@
           : "Skin Changer is supported on these executors. Gain External is standalone and needs none.";
     }
 
-    if (plan.id === "external") {
-      currentSnippet = "";
-      if (snippetBox) snippetBox.hidden = true;
-    } else {
-      currentSnippet = `script_key="YOUR_KEY_HERE";\nloadstring(game:HttpGet("${plan.loaderUrl || ""}"))()`;
-      if (snippetBox) snippetBox.hidden = false;
-      if (snippetEl) snippetEl.textContent = currentSnippet;
-    }
-
     requestAnimationFrame(centerCompares);
   };
 
@@ -479,17 +460,6 @@
   const exec = $("exec-list");
   if (exec && cfg.executors) {
     exec.innerHTML = cfg.executors.map((n) => `<span>${esc(n)}</span>`).join("");
-  }
-
-  const copy = $("copy-snippet");
-  if (copy) {
-    copy.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(currentSnippet);
-        copy.textContent = "Copied";
-        setTimeout(() => (copy.textContent = "Copy"), 1600);
-      } catch (_) {}
-    });
   }
 
   /* ------------------------------------------------------------------ faq */
@@ -547,65 +517,6 @@
       );
     }
     document.querySelectorAll(".reveal:not(.in)").forEach((el) => observer.observe(el));
-  }
-
-  /* -------------------------------------------------------- sale countdown */
-
-  const sale = cfg.sale;
-  const saleBanner = $("sale-banner");
-  const saleCopy = $("sale-copy");
-  const saleHeadline = $("sale-headline");
-  const saleH = $("sale-h");
-  const saleM = $("sale-m");
-  const saleS = $("sale-s");
-  const buyTimer = $("buy-timer");
-  const buyTimerValue = $("buy-timer-value");
-  const planTimers = document.querySelectorAll("[data-plan-timer]");
-  let saleEnd = 0;
-
-  const pad2 = (n) => String(n).padStart(2, "0");
-  const formatCountdown = (ms) => {
-    const total = Math.max(0, Math.floor(ms / 1000));
-    const h = Math.floor(total / 3600);
-    const m = Math.floor((total % 3600) / 60);
-    const s = total % 60;
-    return { h, m, s, text: `${pad2(h)}:${pad2(m)}:${pad2(s)}` };
-  };
-
-  const updateSaleUi = () => {
-    if (!sale || !sale.active || !saleEnd) return false;
-    const left = saleEnd - Date.now();
-    if (left <= 0) {
-      if (saleBanner) saleBanner.hidden = true;
-      if (buyTimer) buyTimer.hidden = true;
-      planTimers.forEach((el) => {
-        el.hidden = true;
-      });
-      return false;
-    }
-    const parts = formatCountdown(left);
-    if (saleH) saleH.textContent = pad2(parts.h);
-    if (saleM) saleM.textContent = pad2(parts.m);
-    if (saleS) saleS.textContent = pad2(parts.s);
-    if (buyTimerValue) buyTimerValue.textContent = parts.text;
-    if (buyTimer) buyTimer.hidden = false;
-    planTimers.forEach((el) => {
-      const b = el.querySelector("b");
-      if (b) b.textContent = parts.text;
-      el.hidden = false;
-    });
-    return true;
-  };
-
-  if (sale && sale.active && sale.endsAt) {
-    saleEnd = Date.parse(sale.endsAt);
-    if (!Number.isNaN(saleEnd) && saleEnd > Date.now()) {
-      if (saleHeadline && sale.headline) saleHeadline.textContent = sale.headline;
-      if (saleCopy && sale.copy) saleCopy.textContent = sale.copy;
-      if (saleBanner) saleBanner.hidden = false;
-      updateSaleUi();
-      window.setInterval(updateSaleUi, 1000);
-    }
   }
 
   /* ---------------------------------------------------------- sales stats */

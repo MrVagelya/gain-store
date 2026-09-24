@@ -11,12 +11,7 @@ window.GAIN_STORE = {
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/stats/sales",
   defaultPlan: "external",
 
-  sale: {
-    active: true,
-    headline: "Last chance",
-    copy: "50% off Skin Changer — bundle now $5.00. Prices reset when the timer hits zero.",
-    endsAt: "2026-09-24T20:00:00.000Z",
-  },
+  loaderDownloadUrl: "downloads/Loader.zip",
 
   nav: [
     { id: "home", label: "Home" },
@@ -215,15 +210,12 @@ window.GAIN_STORE = {
       blurb: "In-game cosmetics, visuals, and spoof tools.",
       long:
         "Unlock every weapon skin, wrap and charm with a live preview, then push the game's visuals far past its own settings. Spoof your level, rank, ELO, name and device, and keep it all in named config profiles.",
-      price: "$2.50",
-      priceWas: "$5.00",
-      save: "50% off",
-      badge: "Last chance",
-      cta: "Pay with card — $2.50",
-      stripeUrl: "https://buy.stripe.com/bJe9ASdKr6dOduIaAGdQQ03",
-      loaderUrl:
-        "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
-      delivery: "Roblox loader script + license key",
+      price: "$5.00",
+      priceWas: "",
+      save: "",
+      cta: "Pay with card — $5.00",
+      stripeUrl: "https://buy.stripe.com/dRm6oGeOv8lW76k106dQQ00",
+      delivery: "Loader zip + license (email delivery)",
       includes: ["Insane performance", "Instant updates", "Lifetime access"],
       highlights: [
         "Every skin, wrap and charm unlocked",
@@ -232,8 +224,8 @@ window.GAIN_STORE = {
       ],
       setup: [
         "Pay with card, or purchase on Discord.",
-        "Join Rivals and open your executor.",
-        "Paste the loader, add your key and run it.",
+        "Download Loader.zip from the success page and extract Gain.exe.",
+        "Run Gain.exe and sign in with the license sent to your email.",
       ],
       features: {
         Cosmetics: [
@@ -284,13 +276,11 @@ window.GAIN_STORE = {
       long:
         "A complete external workspace. Aimbot, silent aim, trigger and rage, readable ESP, motion control, a live 3D preview, a built-in Lua VM, a full player list and a real instance explorer — rendered at up to 360 FPS outside the game.",
       price: "$3.50",
-      priceWas: "$5.00",
-      save: "30% off",
+      priceWas: "",
+      save: "",
       cta: "Pay with card — $3.50",
       stripeUrl: "https://buy.stripe.com/dRm6oG8q7dGg62g4cidQQ02",
-      loaderUrl:
-        "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/external",
-      delivery: "Windows app (zip) + license key",
+      delivery: "Windows app (zip) + license (email delivery)",
       includes: ["Insane performance", "Instant updates", "Lifetime access"],
       highlights: [
         "Aimbot, silent aim and rage in one tab",
@@ -357,15 +347,12 @@ window.GAIN_STORE = {
       blurb: "Skin Changer and External together. Two keys, one checkout.",
       long:
         "Everything Gain makes, in one payment. Two independent lifetime licenses — the Rivals Skin Changer for cosmetics and visuals, and the External for combat, ESP and tooling.",
-      price: "$5.00",
-      priceWas: "$7.50",
-      save: "Save $2.50",
-      badge: "Last chance",
-      cta: "Pay with card — $5.00",
-      stripeUrl: "https://buy.stripe.com/5kQcN4dKr6dO1M024adQQ04",
-      loaderUrl:
-        "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/license/loader/gain",
-      delivery: "Loader + Windows app, two keys",
+      price: "$7.50",
+      priceWas: "$8.50",
+      save: "Save $1.00",
+      cta: "Pay with card — $7.50",
+      stripeUrl: "https://buy.stripe.com/28EbJ049R7hSduI5gmdQQ01",
+      delivery: "Loader zip + External app (email delivery)",
       includes: [
         "Insane performance",
         "Both products included",
@@ -377,9 +364,9 @@ window.GAIN_STORE = {
         "One checkout, instant delivery",
       ],
       setup: [
-        "Pay once. You receive two keys on the success page.",
-        "Use the Skin Changer key with the executor loader only.",
-        "Download External from the success page and paste its key in the app — not in Roblox.",
+        "Pay once. Delivery details are emailed to you.",
+        "Download Loader.zip for Skin Changer and run Gain.exe.",
+        "Download Gain External from the success page when prompted.",
       ],
       features: {
         Included: [
@@ -388,7 +375,7 @@ window.GAIN_STORE = {
           "Two separate licenses",
           "Lifetime on both",
         ],
-        Value: ["$2.50 + $3.50 separately", "Bundle $5.00", "Save $1.00"],
+        Value: ["$5.00 + $3.50 separately", "Bundle $7.50", "Save $1.00"],
         Support: [
           "Priority Discord help",
           "Both products patched together",
