@@ -3,15 +3,16 @@ window.GAIN_STORE = {
   tagline: "The best Roblox external on the market.",
   version: "v1.5.0",
   discordUrl: "https://discord.gg/PBMHrgJ4Kd",
+  // Skin Changer / legacy Supabase checkout only — not used for Gain External KeyAuth keys.
   stripeFulfillUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/fulfill",
+  // Deploy workers/external-fulfill.mjs (Cloudflare) and paste the URL here (no trailing slash).
+  externalFulfillUrl: "",
   stripeDownloadUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/download",
   salesStatsUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/stats/sales",
   defaultPlan: "external",
-
-  loaderDownloadUrl: "downloads/Loader.zip",
 
   nav: [
     { id: "home", label: "Home" },

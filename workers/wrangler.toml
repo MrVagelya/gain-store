@@ -1,0 +1,7 @@
+name = "gain-external-fulfill"
+main = "external-fulfill.mjs"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "ASSIGNMENTS"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
