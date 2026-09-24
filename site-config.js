@@ -13,6 +13,14 @@ window.GAIN_STORE = {
 
   loaderDownloadUrl: "downloads/Loader.zip",
 
+  externalLicenseKeys: [
+    "mav9OV-44MXNB-2o04Sn-iWQVYP-zseQaH-LhY1tw",
+    "YHHmQM-6vWgh0-ysNle6-UFkKfT-7H6nuR-yin6IB",
+    "wiVhk6-qInUlF-BH42bx-y7qoUd-eTiGgo-WwLyIY",
+    "r0Kr5g-2z64NI-ZjYHrm-cQX1vT-eck3Eq-YJxgWA",
+    "shvbV5-ivCztc-wVpmA8-AdYCkn-NJn9Qg-UFsFXe",
+  ],
+
   nav: [
     { id: "home", label: "Home" },
     { id: "tour", label: "Tour" },
@@ -280,7 +288,7 @@ window.GAIN_STORE = {
       save: "",
       cta: "Pay with card — $3.50",
       stripeUrl: "https://buy.stripe.com/dRm6oG8q7dGg62g4cidQQ02",
-      delivery: "Windows app (zip) + license (email delivery)",
+      delivery: "Windows app (zip) + license key",
       includes: ["Insane performance", "Instant updates", "Lifetime access"],
       highlights: [
         "Aimbot, silent aim and rage in one tab",
