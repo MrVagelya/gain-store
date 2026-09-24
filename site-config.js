@@ -7,7 +7,7 @@ window.GAIN_STORE = {
   stripeFulfillUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/fulfill",
   // Deploy workers/external-fulfill.mjs (Cloudflare) and paste the URL here (no trailing slash).
-  externalFulfillUrl: "",
+  externalFulfillUrl: "https://gain-external-fulfill.forest-duckling.workers.dev",
   stripeDownloadUrl:
     "https://repssuepvwmpfctiztvj.supabase.co/functions/v1/stripe/download",
   salesStatsUrl:
