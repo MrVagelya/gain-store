@@ -13,7 +13,6 @@
 
   const externalTitle = plans.external?.title || "Gain External";
   const skinTitle = plans.skins?.title || "Rivals Skin Changer";
-  const keyPool = Array.isArray(cfg.externalLicenseKeys) ? cfg.externalLicenseKeys.filter(Boolean) : [];
 
   const loaderDownloadUrl = (() => {
     const raw = cfg.loaderDownloadUrl || "";
@@ -29,55 +28,95 @@
   const params = new URLSearchParams(location.search);
   const sessionId = params.get("session_id") || "";
 
+  const hasScriptSnippet = (item) => {
+    const s = String(item?.snippet || "");
+    return s.includes("loadstring") || s.includes("script_key") || s.includes("/loader/");
+  };
+
   const guessType = (item) => {
     const name = String(item?.name || item?.product || "").toLowerCase();
     if (name.includes("skin")) return "skins";
     if (name.includes("external")) return "external";
     if (name.includes("bundle")) return "bundle";
-    return "unknown";
+    if (hasScriptSnippet(item)) return "skins";
+    return "external";
   };
 
-  const orderIncludesExternal = (data) => {
-    if (data.items && data.items.length) {
-      return data.items.some((item) => {
-        const t = guessType(item);
-        return t === "external" || t === "bundle";
-      });
+  const normalizeItems = (rawItems) => {
+    const items = (rawItems || []).map((item) => ({
+      name: String(item.name || "License"),
+      key: String(item.key || ""),
+      snippet: String(item.snippet || ""),
+      type: guessType(item),
+    }));
+
+    if (items.length === 2) {
+      const skinsIdx = items.findIndex((i) => i.type === "skins");
+      const extIdx = items.findIndex((i) => i.type === "external");
+      if (skinsIdx >= 0 && extIdx >= 0) {
+        const skins = items[skinsIdx];
+        const ext = items[extIdx];
+        const skinsHasScript = hasScriptSnippet(skins);
+        const extHasScript = hasScriptSnippet(ext);
+        if (!skinsHasScript && extHasScript) {
+          const tmp = skins.key;
+          skins.key = ext.key;
+          ext.key = tmp;
+        }
+      }
     }
-    const t = guessType({ name: data.productName || data.name || "" });
-    if (t === "external" || t === "bundle") return true;
-    return Boolean(data.download);
+
+    return items.map((item) => {
+      const type = item.type;
+      const name = type === "skins" ? skinTitle : externalTitle;
+      return { name, key: item.key, type };
+    });
+  };
+
+  const normalizeSingle = (data) => {
+    const name = String(data.productName || data.name || "");
+    let type = guessType({ name, snippet: data.loaderSnippet || "" });
+    if (!name) {
+      type = data.download
+        ? "external"
+        : hasScriptSnippet({ snippet: data.loaderSnippet })
+          ? "skins"
+          : "external";
+    }
+    const key = String(data.key || "");
+    const displayName = type === "skins" ? skinTitle : externalTitle;
+    return [{ name: displayName, key, type }];
+  };
+
+  const toDisplayItems = (data) => {
+    const normalized =
+      data.items && data.items.length ? normalizeItems(data.items) : normalizeSingle(data);
+    const out = [];
+    for (const item of normalized) {
+      if (item.type === "external") {
+        out.push(item);
+        continue;
+      }
+      if (item.type === "skins") {
+        out.push({ name: item.name, key: "", type: "skins", emailOnly: true });
+      }
+    }
+    if (!out.length && normalized.some((i) => i.type === "external")) {
+      out.push(...normalized.filter((i) => i.type === "external"));
+    }
+    return out;
   };
 
   const orderIncludesSkins = (data) => {
-    if (data.items && data.items.length) {
-      return data.items.some((item) => {
-        const t = guessType(item);
-        return t === "skins" || t === "bundle";
-      });
-    }
-    const t = guessType({ name: data.productName || data.name || "" });
-    return t === "skins" || t === "bundle";
+    const normalized =
+      data.items && data.items.length ? normalizeItems(data.items) : normalizeSingle(data);
+    return normalized.some((i) => i.type === "skins");
   };
 
-  const allocateExternalKey = (sid) => {
-    if (!keyPool.length) return "";
-    const mapKey = "gain-external-key-by-session";
-    const indexKey = "gain-external-key-next-index";
-    try {
-      const map = JSON.parse(localStorage.getItem(mapKey) || "{}");
-      if (map[sid]) return map[sid];
-      let next = Number.parseInt(localStorage.getItem(indexKey) || "0", 10);
-      if (!Number.isFinite(next) || next < 0) next = 0;
-      if (next >= keyPool.length) next = keyPool.length - 1;
-      const key = keyPool[next];
-      map[sid] = key;
-      localStorage.setItem(mapKey, JSON.stringify(map));
-      localStorage.setItem(indexKey, String(Math.min(next + 1, keyPool.length)));
-      return key;
-    } catch {
-      return keyPool[0] || "";
-    }
+  const orderIncludesExternal = (data) => {
+    const normalized =
+      data.items && data.items.length ? normalizeItems(data.items) : normalizeSingle(data);
+    return normalized.some((i) => i.type === "external");
   };
 
   if (!sessionId || !fulfillUrl) {
@@ -88,27 +127,6 @@
   let tries = 0;
   const maxTries = 40;
   let lastItems = [];
-
-  const buildDisplayItems = (data) => {
-    const items = [];
-    if (orderIncludesExternal(data)) {
-      const key = allocateExternalKey(sessionId);
-      items.push({
-        name: externalTitle,
-        key,
-        type: "external",
-      });
-    }
-    if (orderIncludesSkins(data)) {
-      items.push({
-        name: skinTitle,
-        key: "",
-        type: "skins",
-        emailOnly: true,
-      });
-    }
-    return items;
-  };
 
   const renderItems = (items, needsLoader) => {
     lastItems = items;
@@ -172,13 +190,12 @@
           emailNotice.hidden = false;
         }
 
-        const displayItems = buildDisplayItems(data);
+        const displayItems = toDisplayItems(data);
         renderItems(displayItems, orderIncludesSkins(data));
         if (keyBox) keyBox.hidden = false;
 
-        const needsExternal = orderIncludesExternal(data);
         const downloadBtn = document.getElementById("download-btn");
-        if (downloadBtn && needsExternal && cfg.stripeDownloadUrl) {
+        if (downloadBtn && orderIncludesExternal(data) && cfg.stripeDownloadUrl) {
           downloadBtn.hidden = false;
           downloadBtn.onclick = async (e) => {
             e.preventDefault();
